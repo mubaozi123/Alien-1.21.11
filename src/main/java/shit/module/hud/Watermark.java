@@ -21,7 +21,7 @@ import shit.setting.StringSetting;
 public class Watermark
 extends Module
 implements Listener3 {
-    private final StringSetting text = (StringSetting)this.m28(new StringSetting("Text", "TrollHack-Recode"));
+    private final StringSetting text = (StringSetting)this.m28(new StringSetting("Text", "Alien"));
     private final EnumSetting mode = (EnumSetting)this.m28(new EnumSetting("Mode", Mode.CLIENT_VERSION));
     private final BooleanSetting info = (BooleanSetting)this.m28(new BooleanSetting("Info", false));
     private final BooleanSetting shadow = (BooleanSetting)this.m28(new BooleanSetting("Shadow", true));
@@ -79,17 +79,17 @@ implements Listener3 {
                 break;
             }
             case 1: {
-                String string2 = "TrollHack-Recode";
+                String string2 = "Alien";
                 break;
             }
             case 2: {
-                String string2 = string = "TrollHack-Recode 1.0.0";
+                String string2 = string = "Alien 1.0.0";
             }
         }
         if (!((Boolean)this.info.getObj()).booleanValue()) {
             return string;
         }
-        return string + " | " + MinecraftAccessor.trollhack$getFps() + " FPS";
+        return string + " | " + MinecraftAccessor.alien$getFps() + " FPS";
     }
 
     private static MatchException a(MatchException matchException) {

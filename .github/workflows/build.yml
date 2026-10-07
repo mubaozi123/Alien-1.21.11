@@ -1,0 +1,47 @@
+name: Build Alien
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: alien-mod
+          path: build/libs/*.jar
+
+      - name: Create / Update Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v4.0.0
+          name: Alien 4.0.0 (Minecraft 1.21.11)
+          body: |
+            Alien mod version 4.0.0 for Minecraft 1.21.11 (Fabric).
+            Author: mubaozi123
+          files: build/libs/*.jar
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

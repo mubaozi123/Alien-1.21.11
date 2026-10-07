@@ -2,7 +2,7 @@
 	"providers": [
 		{
 			"type": "ttf",
-			"file": "trollhack-recode:default.ttf",
+			"file": "alien:lexenddeca-regular.ttf",
 			"shift": [0, 0],
 			"size": 11.0,
 			"oversample": 2.0

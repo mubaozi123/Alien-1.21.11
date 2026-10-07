@@ -142,7 +142,7 @@ public final class ApiEndpoints3 {
                 }
                 if (null == null) continue;
             }
-        }, "TrollHack-Reval");
+        }, "Alien-Reval");
         thread.setDaemon(true);
         thread.start();
     }
@@ -198,7 +198,7 @@ public final class ApiEndpoints3 {
             String string3 = ApiEndpoints3.m548("1.0.0");
             String string4 = ApiEndpoints3.m548(string);
             String string5 = ApiEndpoints3.m548(SystemUtil.getText23());
-            String string6 = "{\"hwid\":\"" + string5 + "\",\"username\":\"" + string4 + "\",\"client\":\"trollhack-recode\",\"version\":\"" + string3 + "\"}";
+            String string6 = "{\"hwid\":\"" + string5 + "\",\"username\":\"" + string4 + "\",\"client\":\"alien\",\"version\":\"" + string3 + "\"}";
             ApiEndpoints3.m388(httpURLConnection, string6);
             int n = httpURLConnection.getResponseCode();
             String string7 = ApiEndpoints3.m985(httpURLConnection, n);
@@ -255,7 +255,7 @@ public final class ApiEndpoints3 {
             String string3 = ApiEndpoints3.m548("1.0.0");
             String string4 = ApiEndpoints3.m548(SystemUtil.getText23());
             String string5 = ApiEndpoints3.m548(string);
-            String string6 = "{\"code\":\"" + string5 + "\",\"hwid\":\"" + string4 + "\",\"client\":\"trollhack-recode\",\"version\":\"" + string3 + "\"}";
+            String string6 = "{\"code\":\"" + string5 + "\",\"hwid\":\"" + string4 + "\",\"client\":\"alien\",\"version\":\"" + string3 + "\"}";
             ApiEndpoints3.m388(httpURLConnection, string6);
             int n = httpURLConnection.getResponseCode();
             String string7 = ApiEndpoints3.m985(httpURLConnection, n);
@@ -325,7 +325,7 @@ public final class ApiEndpoints3 {
                     String string3 = ApiEndpoints3.m548(ApiEndpoints3.getText58());
                     String string4 = ApiEndpoints3.m548(SystemUtil.getText23());
                     String string5 = ApiEndpoints3.m548(string);
-                    String string6 = "{\"token\":\"" + string5 + "\",\"hwid\":\"" + string4 + "\",\"ip\":\"" + string3 + "\",\"client\":\"trollhack-recode\",\"version\":\"" + string2 + "\",\"phase\":\"login\"}";
+                    String string6 = "{\"token\":\"" + string5 + "\",\"hwid\":\"" + string4 + "\",\"ip\":\"" + string3 + "\",\"client\":\"alien\",\"version\":\"" + string2 + "\",\"phase\":\"login\"}";
                     ApiEndpoints3.m388(httpURLConnection, string6);
                     n = httpURLConnection.getResponseCode();
                     if (n >= 500) break block18;
@@ -412,7 +412,7 @@ public final class ApiEndpoints3 {
                     String string5 = ApiEndpoints3.m548(ApiEndpoints3.getText58());
                     String string6 = ApiEndpoints3.m548(SystemUtil.getText23());
                     String string7 = ApiEndpoints3.m548(string2);
-                    String string8 = "{\"token\":\"" + string7 + "\",\"hwid\":\"" + string6 + "\",\"ip\":\"" + string5 + "\",\"client\":\"trollhack-recode\",\"version\":\"" + string4 + "\",\"phase\":\"" + string3 + "\"}";
+                    String string8 = "{\"token\":\"" + string7 + "\",\"hwid\":\"" + string6 + "\",\"ip\":\"" + string5 + "\",\"client\":\"alien\",\"version\":\"" + string4 + "\",\"phase\":\"" + string3 + "\"}";
                     ApiEndpoints3.m388(httpURLConnection, string8);
                     n = httpURLConnection.getResponseCode();
                     if (n >= 500) break block17;
@@ -498,7 +498,7 @@ public final class ApiEndpoints3 {
             long l3 = l;
             long l4 = l2;
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            ApiEndpoints3.m680(messageDigest, "TrollHack-Recode-Session-Seal-v1");
+            ApiEndpoints3.m680(messageDigest, "Alien-Session-Seal-v1");
             ApiEndpoints3.m680(messageDigest, SystemUtil.getText23());
             ApiEndpoints3.m680(messageDigest, SystemUtil.getText3());
             ApiEndpoints3.m680(messageDigest, "1.0.0");

@@ -2,7 +2,7 @@
 	"providers": [
 		{
 			"type": "ttf",
-			"file": "trollhack-recode:misans-regular.ttf",
+			"file": "alien:default.ttf",
 			"shift": [0, 0],
 			"size": 11.0,
 			"oversample": 2.0

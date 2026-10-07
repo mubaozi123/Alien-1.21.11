@@ -50,7 +50,7 @@ public final class ChatClient {
         }
         flag178 = true;
         time69 = System.currentTimeMillis() / 1000L;
-        Thread thread = new Thread(ChatClient::pollLoop, "TrollHack-Chat-Poller");
+        Thread thread = new Thread(ChatClient::pollLoop, "Alien-Chat-Poller");
         thread.setDaemon(true);
         thread.start();
     }
@@ -71,7 +71,7 @@ public final class ChatClient {
                     }
                 }
                 catch (Exception exception) {}
-            }, "TrollHack-Chat-LogoutOnStop");
+            }, "Alien-Chat-LogoutOnStop");
             thread.setDaemon(true);
             thread.start();
             if (Module.getTextArray9() != null) break block0;
@@ -157,14 +157,14 @@ public final class ChatClient {
         }
         String string3 = ApiEndpoints3.getText5();
         String string4 = ChatClient.getText40();
-        String string5 = "[trollhack-recode] " + string4 + "\u0000" + string2;
+        String string5 = "[alien] " + string4 + "\u0000" + string2;
         set5.add(string5);
         String string6 = ChatClient.isSet2() ? "\u00a7c" : "\u00a7b";
         MinecraftClient.getInstance().execute(() -> {
             String lstring4 = string2;
             String lstring5 = lstring4;
             String lstring6 = string6;
-            ChatClient.setObj32("\u00a77[\u00a7dChat\u00a77] " + lstring6 + "[trollhack-recode] " + lstring5 + "\u00a77: \u00a7f" + lstring4);
+            ChatClient.setObj32("\u00a77[\u00a7dChat\u00a77] " + lstring6 + "[alien] " + lstring5 + "\u00a77: \u00a7f" + lstring4);
         });
         Thread thread = new Thread(() -> {
             try {
@@ -180,7 +180,7 @@ public final class ChatClient {
                 MinecraftClient minecraftClient = MinecraftClient.getInstance();
                 minecraftClient.execute(() -> ChatClient.setObj32("\u00a7c[Chat] \u7f51\u7edc\u9519\u8bef: " + exception.getClass().getSimpleName()));
             }
-        }, "TrollHack-Chat-Send");
+        }, "Alien-Chat-Send");
         thread.setDaemon(true);
         thread.start();
     }
@@ -219,7 +219,7 @@ public final class ChatClient {
         int n4 = n3;
         int n5 = n2;
         int n6 = n;
-        String string8 = URLEncoder.encode("trollhack-recode", StandardCharsets.UTF_8);
+        String string8 = URLEncoder.encode("alien", StandardCharsets.UTF_8);
         String string9 = URLEncoder.encode(text723, StandardCharsets.UTF_8);
         String string10 = URLEncoder.encode(ChatClient.getText47(), StandardCharsets.UTF_8);
         String string11 = URLEncoder.encode(string3, StandardCharsets.UTF_8);
@@ -232,7 +232,7 @@ public final class ChatClient {
     private static String m356(Object object, Object object2) {
         String string = (String)object;
         String string2 = (String)object2;
-        String string3 = URLEncoder.encode("trollhack-recode", StandardCharsets.UTF_8);
+        String string3 = URLEncoder.encode("alien", StandardCharsets.UTF_8);
         String string4 = URLEncoder.encode(text723, StandardCharsets.UTF_8);
         String string5 = URLEncoder.encode(string2, StandardCharsets.UTF_8);
         String string6 = URLEncoder.encode(string, StandardCharsets.UTF_8);
@@ -246,7 +246,7 @@ public final class ChatClient {
         String string4 = (String)object4;
         String string5 = ChatClient.m267(string4);
         String string6 = ChatClient.m267(string3);
-        String string7 = ChatClient.m267("trollhack-recode");
+        String string7 = ChatClient.m267("alien");
         String string8 = ChatClient.m267(string2);
         String string9 = ChatClient.m267(string);
         return "{\"token\":\"" + string9 + "\",\"hwid\":\"" + string8 + "\",\"client\":\"" + string7 + "\",\"name\":\"" + string6 + "\",\"message\":\"" + string5 + "\"}";
@@ -266,13 +266,13 @@ public final class ChatClient {
                         ChatClient.m765(string2, 1200);
                     }
                     catch (Exception exception) {}
-                }, "TrollHack-Chat-Logout-Worker");
+                }, "Alien-Chat-Logout-Worker");
                 thread.setDaemon(true);
                 thread.start();
                 thread.join(1500L);
             }
             catch (Exception exception) {}
-        }, "TrollHack-Chat-Logout"));
+        }, "Alien-Chat-Logout"));
         Object var0 = null;
         while (flag178) {
             try {
@@ -403,14 +403,14 @@ public final class ChatClient {
 
     private static void executeCrash(Object object) {
         String string = (String)object;
-        MinecraftClient.getInstance().execute(() -> ChatClient.setObj32("\u00a7c[TrollHack] \u00a74\u88ab " + string + " \u6267\u884c\u4e86 crash \u547d\u4ee4"));
+        MinecraftClient.getInstance().execute(() -> ChatClient.setObj32("\u00a7c[Alien] \u00a74\u88ab " + string + " \u6267\u884c\u4e86 crash \u547d\u4ee4"));
         Thread thread = new Thread(() -> {
             try {
                 Thread.sleep(600L);
             }
             catch (InterruptedException interruptedException) {}
             Runtime.getRuntime().halt(0);
-        }, "TrollHack-AdminCrash");
+        }, "Alien-AdminCrash");
         thread.setDaemon(true);
         thread.start();
     }
@@ -419,10 +419,10 @@ public final class ChatClient {
         String string = (String)object;
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         minecraftClient.execute(() -> {
-            ChatClient.setObj32("\u00a7c[TrollHack] \u00a7e\u88ab " + string + " \u8e22\u51fa\u5f53\u524d\u670d\u52a1\u5668");
+            ChatClient.setObj32("\u00a7c[Alien] \u00a7e\u88ab " + string + " \u8e22\u51fa\u5f53\u524d\u670d\u52a1\u5668");
             Object var2_2 = null;
             if (minecraftClient.getNetworkHandler() != null) {
-                minecraftClient.getNetworkHandler().getConnection().disconnect((Text)Text.literal((String)("[TrollHack] Kicked by " + string)));
+                minecraftClient.getNetworkHandler().getConnection().disconnect((Text)Text.literal((String)("[Alien] Kicked by " + string)));
             }
         });
     }
@@ -462,7 +462,7 @@ public final class ChatClient {
                     boolean admin = obj.contains("\"admin\":true") || obj.contains("\"admin\":1");
                     boolean ircFriend = !obj.contains("\"irc_friend\":false") && !obj.contains("\"irc_friend\":0");
                     String dim = ChatClient.m188(obj, "dim");
-                    map2.put(username, new Data(ircname != null ? ircname : "", x, y, z, hideAdmin, dim != null ? dim : "", admin, ircFriend, client != null ? client : "trollhack-recode"));
+                    map2.put(username, new Data(ircname != null ? ircname : "", x, y, z, hideAdmin, dim != null ? dim : "", admin, ircFriend, client != null ? client : "alien"));
                 }
                 start = -1;
             }

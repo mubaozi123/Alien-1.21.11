@@ -29,7 +29,7 @@ import shit.util.Util4;
 
 @Environment(value=EnvType.CLIENT)
 public class ConfigManager {
-    private final Path path3 = Path.of("trollhack-recode", new String[0]);
+    private final Path path3 = Path.of("alien", new String[0]);
     private final Path path5 = this.path3.resolve("configs");
     private final Path path = this.path3.resolve("options.txt");
     private final Path path2 = this.path3.resolve("friends.txt");

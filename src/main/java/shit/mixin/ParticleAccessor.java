@@ -13,21 +13,21 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(value={Particle.class})
 public interface ParticleAccessor {
     @Accessor(value="velocityX")
-    public double trollhack$getXd();
+    public double alien$getXd();
 
     @Accessor(value="velocityX")
-    public void trollhack$setXd(double var1);
+    public void alien$setXd(double var1);
 
     @Accessor(value="velocityY")
-    public double trollhack$getYd();
+    public double alien$getYd();
 
     @Accessor(value="velocityY")
-    public void trollhack$setYd(double var1);
+    public void alien$setYd(double var1);
 
     @Accessor(value="velocityZ")
-    public double trollhack$getZd();
+    public double alien$getZd();
 
     @Accessor(value="velocityZ")
-    public void trollhack$setZd(double var1);
+    public void alien$setZd(double var1);
 }
 

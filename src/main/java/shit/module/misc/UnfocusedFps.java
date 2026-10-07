@@ -41,7 +41,7 @@ extends Module {
             if (this.integer == null) {
                 this.integer = (Integer)simpleOption.getValue();
             }
-            ((OptionInstanceAccessor)(Object)simpleOption).trollhack$set(this.fPS.getInt50());
+            ((OptionInstanceAccessor)(Object)simpleOption).alien$set(this.fPS.getInt50());
         } else {
             this.m1040();
         }
@@ -62,7 +62,7 @@ extends Module {
             }
             gameOptions = MC.client3.options;
         }
-        ((OptionInstanceAccessor)(Object)gameOptions.getMaxFps()).trollhack$set(this.integer);
+        ((OptionInstanceAccessor)(Object)gameOptions.getMaxFps()).alien$set(this.integer);
         this.integer = null;
     }
 }

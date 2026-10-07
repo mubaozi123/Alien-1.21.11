@@ -1,30 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "trollhack-recode",
+  "id": "alien",
   "version": "${version}",
-  "name": "TrollHack-Recode",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Alien",
+  "description": "Alien client mod for Minecraft 1.21.11",
   "authors": [
-    "Me!"
+    "mubaozi123"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/mubaozi123/Alien-1.21.11",
+    "sources": "https://github.com/mubaozi123/Alien-1.21.11"
   },
   "license": "CC0-1.0",
+  "icon": "assets/alien/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "shit.TrollHackRecodeEntrypoint"
+      "shit.AlienEntrypoint"
     ],
     "client": [
-      "shit.TrollHackRecodeClientEntrypoint"
+      "shit.AlienClientEntrypoint"
     ]
   },
   "mixins": [
-    "trollhack-recode.mixins.json",
+    "alien.mixins.json",
     {
-      "config": "trollhack-recode.client.mixins.json",
+      "config": "alien.client.mixins.json",
       "environment": "client"
     }
   ],

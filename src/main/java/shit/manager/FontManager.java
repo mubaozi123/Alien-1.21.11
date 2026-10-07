@@ -113,7 +113,7 @@ public class FontManager {
      */
     private Font m80(String string) {
         Object var2_2 = null;
-        try (InputStream inputStream = FontManager.class.getClassLoader().getResourceAsStream("assets/trollhack-recode/font/" + string);){
+        try (InputStream inputStream = FontManager.class.getClassLoader().getResourceAsStream("assets/alien/font/" + string);){
             if (inputStream == null) {
                 Font font = null;
                 return font;

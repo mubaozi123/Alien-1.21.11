@@ -31,7 +31,7 @@ import shit.module.player.AntiEffects;
 public abstract class LivingEntityMixin
 implements Listener4 {
     @Inject(method={"hasStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)Z"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$onHasEffect(RegistryEntry registryEntry, CallbackInfoReturnable callbackInfoReturnable) {
+    private void alien$onHasEffect(RegistryEntry registryEntry, CallbackInfoReturnable callbackInfoReturnable) {
         AntiEffects antiEffects = AntiEffects.INSTANCE;
         if (antiEffects != null && antiEffects.isSet19() && (Object) this instanceof ClientPlayerEntity) {
             if (registryEntry.value() == StatusEffects.SLOW_FALLING.value() && ((Boolean)antiEffects.slowFalling.getObj()).booleanValue()) {
@@ -43,7 +43,7 @@ implements Listener4 {
     }
 
     @Inject(method={"jump()V"}, at={@At(value="HEAD")})
-    private void trollhack$jumpSyncPre(CallbackInfo callbackInfo) {
+    private void alien$jumpSyncPre(CallbackInfo callbackInfo) {
         Object livingEntityMixin = (Object) this;
         if (livingEntityMixin instanceof ClientPlayerEntity) {
             ClientPlayerEntity clientPlayerEntity = (ClientPlayerEntity)livingEntityMixin;
@@ -54,7 +54,7 @@ implements Listener4 {
     }
 
     @Inject(method={"jump()V"}, at={@At(value="TAIL")})
-    private void trollhack$jumpSyncPost(CallbackInfo callbackInfo) {
+    private void alien$jumpSyncPost(CallbackInfo callbackInfo) {
         Object livingEntityMixin = (Object) this;
         if (livingEntityMixin instanceof ClientPlayerEntity) {
             ClientPlayerEntity clientPlayerEntity = (ClientPlayerEntity)livingEntityMixin;
@@ -65,7 +65,7 @@ implements Listener4 {
     }
 
     @Inject(method={"setSprinting(Z)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$onSetSprinting(boolean bl, CallbackInfo callbackInfo) {
+    private void alien$onSetSprinting(boolean bl, CallbackInfo callbackInfo) {
         if ((Object) this instanceof ClientPlayerEntity && !bl && InMove.INSTANCE != null && InMove.INSTANCE.isSet19() && MinecraftClient.getInstance().currentScreen != null && this.isSet159()) {
             callbackInfo.cancel();
         }
@@ -89,7 +89,7 @@ implements Listener4 {
     }
 
     @Inject(method={"isClimbing()Z"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noClimb(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+    private void alien$noClimb(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         Velocity velocity = Velocity.INSTANCE;
         if ((Object) this instanceof ClientPlayerEntity && velocity != null && velocity.isSet19() && (Boolean) velocity.noClimb.getObj()) {
             callbackInfoReturnable.setReturnValue(false);

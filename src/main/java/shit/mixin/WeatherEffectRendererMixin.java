@@ -19,7 +19,7 @@ import shit.module.render.NoRender;
 @Mixin(value={WeatherRendering.class})
 public class WeatherEffectRendererMixin {
     @Inject(method={"renderPrecipitation(Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/client/render/state/WeatherRenderState;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noWeather(VertexConsumerProvider vertexConsumerProvider, Vec3d vec3d, WeatherRenderState weatherRenderState, CallbackInfo callbackInfo) {
+    private void alien$noWeather(VertexConsumerProvider vertexConsumerProvider, Vec3d vec3d, WeatherRenderState weatherRenderState, CallbackInfo callbackInfo) {
         if (NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.weather.getObj()).booleanValue()) {
             callbackInfo.cancel();
         }

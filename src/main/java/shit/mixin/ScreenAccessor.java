@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(value={Screen.class})
 public interface ScreenAccessor {
     @Invoker(value="renderPanoramaBackground")
-    public void trollhack$renderPanorama(DrawContext var1, float var2);
+    public void alien$renderPanorama(DrawContext var1, float var2);
 
     @Invoker(value="clearChildren")
-    public void trollhack$clearWidgets();
+    public void alien$clearWidgets();
 }
 

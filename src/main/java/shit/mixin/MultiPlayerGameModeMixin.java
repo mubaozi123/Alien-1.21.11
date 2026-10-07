@@ -16,7 +16,7 @@ import shit.util.BlockUtil;
 @Mixin(value={ClientPlayerInteractionManager.class})
 public class MultiPlayerGameModeMixin {
     @Redirect(method={"interactBlockInternal(Lnet/minecraft/client/network/ClientPlayerEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ActionResult;"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/network/ClientPlayerEntity;shouldCancelInteraction()Z"))
-    private boolean trollhack$blockPlaceSneak(ClientPlayerEntity clientPlayerEntity) {
+    private boolean alien$blockPlaceSneak(ClientPlayerEntity clientPlayerEntity) {
         if (BlockUtil.flag47) {
             return true;
         }

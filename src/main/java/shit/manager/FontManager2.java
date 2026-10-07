@@ -117,8 +117,8 @@ AutoCloseable {
             this.count198 = Math.max(this.fontMetrics.getHeight(), this.fontMetrics2.getHeight());
             this.count53 = this.count198 + 4;
             this.field23 = new NativeImage(1024, 1024, true);
-            this.field56 = new NativeImageBackedTexture(() -> "trollhack font " + string + " " + n, this.field23);
-            this.field41 = Identifier.of((String)"trollhack-recode", (String)("font/runtime/" + string + "_" + n));
+            this.field56 = new NativeImageBackedTexture(() -> "alien font " + string + " " + n, this.field23);
+            this.field41 = Identifier.of((String)"alien", (String)("font/runtime/" + string + "_" + n));
             MC.client3.getTextureManager().registerTexture(this.field41, (AbstractTexture)this.field56);
             this.setObj116("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?/\\_-+[]()<>|");
             this.m424();

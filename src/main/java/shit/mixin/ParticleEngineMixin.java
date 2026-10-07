@@ -22,7 +22,7 @@ import shit.module.render.NoRender;
 @Mixin(value={ParticleManager.class})
 public class ParticleEngineMixin {
     @Inject(method={"addParticle(Lnet/minecraft/client/particle/Particle;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noParticle(Particle particle, CallbackInfo callbackInfo) {
+    private void alien$noParticle(Particle particle, CallbackInfo callbackInfo) {
         boolean bl;
         NoRender noRender = NoRender.INSTANCE;
         if (noRender == null || !noRender.isSet19() || particle == null) {

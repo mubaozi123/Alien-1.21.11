@@ -63,7 +63,7 @@ implements Listener3 {
     }
 
     private String getText9() {
-        return "FPS " + MinecraftAccessor.trollhack$getFps();
+        return "FPS " + MinecraftAccessor.alien$getFps();
     }
 }
 

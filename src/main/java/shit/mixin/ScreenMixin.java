@@ -20,7 +20,7 @@ import shit.render.Lightmap;
 @Mixin(value={GuiRenderer.class})
 public class ScreenMixin {
     @Inject(method={"render(Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V"}, at={@At(value="HEAD")})
-    private void trollhack$guiRenderHead(GpuBufferSlice gpuBufferSlice, CallbackInfo callbackInfo) {
+    private void alien$guiRenderHead(GpuBufferSlice gpuBufferSlice, CallbackInfo callbackInfo) {
         if (!ScreenMixin.isWorldColorActive()) {
             return;
         }
@@ -28,7 +28,7 @@ public class ScreenMixin {
     }
 
     @Inject(method={"render(Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V"}, at={@At(value="TAIL")})
-    private void trollhack$guiRenderTail(GpuBufferSlice gpuBufferSlice, CallbackInfo callbackInfo) {
+    private void alien$guiRenderTail(GpuBufferSlice gpuBufferSlice, CallbackInfo callbackInfo) {
         if (!ScreenMixin.isSet157()) {
             return;
         }

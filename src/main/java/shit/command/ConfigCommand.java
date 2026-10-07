@@ -32,7 +32,7 @@ extends Command {
         switch (sub) {
             case "save": {
                 if (args.length < 2 || args[1].isBlank()) {
-                    CommandManager.setObj21("Usage: .config save <name> - saves current modules/settings to trollhack-recode/configs/<name>.txt");
+                    CommandManager.setObj21("Usage: .config save <name> - saves current modules/settings to alien/configs/<name>.txt");
                     return;
                 }
                 if (Client.configManager.m309(args[1])) {
@@ -44,7 +44,7 @@ extends Command {
             }
             case "load": {
                 if (args.length < 2 || args[1].isBlank()) {
-                    CommandManager.setObj21("Usage: .config load <name> - loads trollhack-recode/configs/<name>.txt");
+                    CommandManager.setObj21("Usage: .config load <name> - loads alien/configs/<name>.txt");
                     return;
                 }
                 if (Client.configManager.m575(args[1])) {

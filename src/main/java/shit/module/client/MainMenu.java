@@ -90,7 +90,7 @@ extends Module {
 
     @Environment(value=EnvType.CLIENT)
     public static enum EMode  {
-        TROLL_HACK("TrollHack"), MINECRAFT("Minecraft");
+        TROLL_HACK("Alien"), MINECRAFT("Minecraft");
 
         public final String displayName;
 

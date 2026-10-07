@@ -17,7 +17,7 @@ import shit.event.InputTickEvent;
 @Mixin(value={KeyboardInput.class})
 public class KeyboardInputMixin {
     @Inject(method={"tick()V"}, at={@At(value="RETURN")})
-    private void trollhack$onInputTick(CallbackInfo callbackInfo) {
+    private void alien$onInputTick(CallbackInfo callbackInfo) {
         Client.eventBus.m287(new InputTickEvent());
     }
 }

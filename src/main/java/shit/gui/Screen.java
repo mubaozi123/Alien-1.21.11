@@ -67,7 +67,7 @@ extends net.minecraft.client.gui.screen.Screen {
             }
             this.tryAutoLogin();
         }
-        Thread thread = new Thread(this::fetchMaintenance, "TrollHack-Maint-Check");
+        Thread thread = new Thread(this::fetchMaintenance, "Alien-Maint-Check");
         thread.setDaemon(true);
         thread.start();
         if (Module.getTextArray9() == null) {
@@ -94,7 +94,7 @@ extends net.minecraft.client.gui.screen.Screen {
                     drawContext.drawCenteredTextWithShadow(this.textRenderer, this.text1560, n4, n9, -11149825);
                 }
                 Screen.m699(drawContext, n6, n5, 320, 150, -871099362, -14013894);
-                drawContext.drawCenteredTextWithShadow(this.textRenderer, "TrollHack-Recode Authentication", n4, n5 + 12, -2039553);
+                drawContext.drawCenteredTextWithShadow(this.textRenderer, "Alien Authentication", n4, n5 + 12, -2039553);
                 drawContext.fill(n6 + 10, n5 + 28, n6 + 320 - 10, n5 + 29, 1714039386);
                 n7 = n5 + 40;
             }
@@ -251,7 +251,7 @@ extends net.minecraft.client.gui.screen.Screen {
                 this.text2226 = "Web login timed out.";
                 this.count205 = -43691;
             }
-        }, "TrollHack-Web-Login");
+        }, "Alien-Web-Login");
         thread.setDaemon(true);
         thread.start();
     }
@@ -311,7 +311,7 @@ extends net.minecraft.client.gui.screen.Screen {
         this.text2226 = "Saved session found. Verifying...";
         this.count205 = -11149825;
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        Thread thread = new Thread(() -> this.cfrlam$tryAutoLogin$4(minecraftClient), "TrollHack-Auto-Login");
+        Thread thread = new Thread(() -> this.cfrlam$tryAutoLogin$4(minecraftClient), "Alien-Auto-Login");
         thread.setDaemon(true);
         thread.start();
     }

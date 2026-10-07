@@ -18,7 +18,7 @@ import shit.module.combat.AutoRegear;
 @Mixin(value={HandledScreen.class})
 public class AbstractContainerScreenSilentMixin {
     @Inject(method={"render(Lnet/minecraft/client/gui/DrawContext;IIF)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$cancelRender(DrawContext drawContext, int n, int n2, float f, CallbackInfo callbackInfo) {
+    private void alien$cancelRender(DrawContext drawContext, int n, int n2, float f, CallbackInfo callbackInfo) {
         if (AutoRegear.isSet128() || AntiRegear.isSet81()) {
             callbackInfo.cancel();
         }

@@ -14,7 +14,7 @@ import shit.setting.NumberSetting;
 @Environment(value=EnvType.CLIENT)
 public class Fonts
 extends Module {
-    public final EnumSetting mode = (EnumSetting)this.m28(new EnumSetting("Mode", Mode.TROLLHACK_LEXEND));
+    public final EnumSetting mode = (EnumSetting)this.m28(new EnumSetting("Mode", Mode.ALIEN_LEXEND));
     public final EnumSetting sizeMode = (EnumSetting)this.m28(new EnumSetting("SizeMode", SizeMode.NORMAL));
     public final NumberSetting customSize = (NumberSetting)this.m28(new NumberSetting("CustomSize", 9.0, 6.0, 18.0, 1.0, 1.0, () -> this.sizeMode.getObj() == SizeMode.CUSTOM, null, "", false));
     public final NumberSetting offset = (NumberSetting)this.m28(new NumberSetting("Offset", 0.0, -5.0, 5.0, 0.5));
@@ -68,7 +68,7 @@ extends Module {
 
     @Environment(value=EnvType.CLIENT)
     public static enum Mode {
-        TROLLHACK_JURA("jura-light.ttf"), TROLLHACK_LEXEND("lexenddeca-regular.ttf"), MISANS("next/mi-sans-regular.ttf"),
+        ALIEN_JURA("jura-light.ttf"), ALIEN_LEXEND("lexenddeca-regular.ttf"), MISANS("next/mi-sans-regular.ttf"),
         GOOGLE_SANS("next/google-sans-regular.ttf"), GOOGLE_SANS_MEDIUM("next/google-sans-medium.ttf"),
         GOOGLE_SANS_SEMI_BOLD("next/google-sans-semibold.ttf"), GOOGLE_SANS_BOLD("next/google-sans-bold.ttf"),
         HARMONY("next/harmony.ttf"), LIRA("next/lira.ttf"), REGULAR("next/regular.otf"),

@@ -20,7 +20,7 @@ import shit.module.render.NoRender;
 @Mixin(value={ArmorFeatureRenderer.class})
 public class HumanoidArmorLayerMixin {
     @Inject(method={"render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;ILnet/minecraft/client/render/entity/state/BipedEntityRenderState;FF)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noArmor(MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, int n, BipedEntityRenderState bipedEntityRenderState, float f, float f2, CallbackInfo callbackInfo) {
+    private void alien$noArmor(MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, int n, BipedEntityRenderState bipedEntityRenderState, float f, float f2, CallbackInfo callbackInfo) {
         if (ArmorHide.isSet126() || NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.armorParts.getObj()).booleanValue()) {
             callbackInfo.cancel();
         }

@@ -62,7 +62,7 @@ extends Module {
         }
         this.x = string;
         this.time36 = l;
-        String string3 = (Boolean)this.customMessage.getObj() != false ? (String)this.customText.getObj() : "I just automatically replied, thanks to TrollHack's AutoReply module!";
+        String string3 = (Boolean)this.customMessage.getObj() != false ? (String)this.customText.getObj() : "I just automatically replied, thanks to Alien's AutoReply module!";
         Util2.setObj14("r " + string3);
     }
 }

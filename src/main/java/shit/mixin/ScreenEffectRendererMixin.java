@@ -21,21 +21,21 @@ import shit.module.render.NoRender;
 @Mixin(value={InGameOverlayRenderer.class})
 public class ScreenEffectRendererMixin {
     @Inject(method={"renderFireOverlay(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/texture/Sprite;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private static void trollhack$noFireOverlay(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, Sprite sprite, CallbackInfo callbackInfo) {
+    private static void alien$noFireOverlay(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, Sprite sprite, CallbackInfo callbackInfo) {
         if (AntiOverlay.isSet175() || NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.fireOverlay.getObj()).booleanValue()) {
             callbackInfo.cancel();
         }
     }
 
     @Inject(method={"renderUnderwaterOverlay(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private static void trollhack$noWaterOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, CallbackInfo callbackInfo) {
+    private static void alien$noWaterOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, CallbackInfo callbackInfo) {
         if (AntiOverlay.isSet147() || NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.waterOverlay.getObj()).booleanValue()) {
             callbackInfo.cancel();
         }
     }
 
     @Inject(method={"renderInWallOverlay(Lnet/minecraft/client/texture/Sprite;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private static void trollhack$noBlockOverlay(Sprite sprite, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, CallbackInfo callbackInfo) {
+    private static void alien$noBlockOverlay(Sprite sprite, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, CallbackInfo callbackInfo) {
         if (AntiOverlay.isSet28() || NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.blockOverlay.getObj()).booleanValue()) {
             callbackInfo.cancel();
         }

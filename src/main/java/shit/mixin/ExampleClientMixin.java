@@ -28,17 +28,17 @@ import shit.util.AuthUtil;
 @Mixin(value={MinecraftClient.class})
 public class ExampleClientMixin {
     @Inject(method={"tick()V"}, at={@At(value="HEAD")})
-    private void trollhack$preTick(CallbackInfo callbackInfo) {
+    private void alien$preTick(CallbackInfo callbackInfo) {
         Client.eventBus.m287(new Event2.Event2Inner());
     }
 
     @Inject(method={"tick()V"}, at={@At(value="TAIL")})
-    private void trollhack$postTick(CallbackInfo callbackInfo) {
+    private void alien$postTick(CallbackInfo callbackInfo) {
         Client.eventBus.m287(new Event2.Event2Inner2());
     }
 
     @Inject(method={"setScreen(Lnet/minecraft/client/gui/screen/Screen;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$setScreen(Screen screen, CallbackInfo callbackInfo) {
+    private void alien$setScreen(Screen screen, CallbackInfo callbackInfo) {
         SetScreenEvent setScreenEvent = (SetScreenEvent) Client.eventBus.m287(new SetScreenEvent(screen));
         if (setScreenEvent.isSet85()) {
             callbackInfo.cancel();
@@ -46,7 +46,7 @@ public class ExampleClientMixin {
     }
 
     @Inject(method={"doAttack()Z"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$startAttack(CallbackInfoReturnable callbackInfoReturnable) {
+    private void alien$startAttack(CallbackInfoReturnable callbackInfoReturnable) {
         MinecraftClient minecraftClient = (MinecraftClient) (Object) this;
         Entity entity = minecraftClient.targetedEntity;
         if (entity instanceof PlayerEntity) {
@@ -62,7 +62,7 @@ public class ExampleClientMixin {
     }
 
     @Inject(method={"doItemUse()V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$startUseItem(CallbackInfo callbackInfo) {
+    private void alien$startUseItem(CallbackInfo callbackInfo) {
         if (!ApiEndpoints3.isSet46()) {
             callbackInfo.cancel();
             return;
@@ -73,12 +73,12 @@ public class ExampleClientMixin {
     }
 
     @Inject(method={"disconnect(Lnet/minecraft/client/gui/screen/Screen;ZZ)V"}, at={@At(value="HEAD")})
-    private void trollhack$disconnect(Screen screen, boolean bl, boolean bl2, CallbackInfo callbackInfo) {
+    private void alien$disconnect(Screen screen, boolean bl, boolean bl2, CallbackInfo callbackInfo) {
         Client.eventBus.m287(new DisconnectEvent());
     }
 
     @Inject(method={"onResolutionChanged()V"}, at={@At(value="TAIL")})
-    private void trollhack$resizeDisplay(CallbackInfo callbackInfo) {
+    private void alien$resizeDisplay(CallbackInfo callbackInfo) {
         Client.helper.m27();
     }
 }

@@ -107,7 +107,7 @@ implements MC {
         int n = ClientSetting.INSTANCE != null ? (Integer)ClientSetting.INSTANCE.prefixColor.getObj() : -11141121;
         int n2 = n & 0xFFFFFF;
         Style style = Style.EMPTY.withColor(TextColor.fromRgb((int)n2));
-        MutableText mutableText = Text.literal((String)"[TrollHack-Recode] ").fillStyle(style);
+        MutableText mutableText = Text.literal((String)"[Alien] ").fillStyle(style);
         MutableText mutableText2 = Text.literal((String)string);
         MC.client3.inGameHud.getChatHud().addMessage((Text)mutableText.copy().append((Text)mutableText2));
     }

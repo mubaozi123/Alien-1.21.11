@@ -18,14 +18,14 @@ import shit.module.render.NoRender;
 @Mixin(value={GameRenderer.class})
 public class GameRendererNoRenderMixin {
     @Inject(method={"tiltViewWhenHurt(Lnet/minecraft/client/util/math/MatrixStack;F)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noHurtCam(MatrixStack matrixStack, float f, CallbackInfo callbackInfo) {
+    private void alien$noHurtCam(MatrixStack matrixStack, float f, CallbackInfo callbackInfo) {
         if (NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.hurtCam.getObj()).booleanValue()) {
             callbackInfo.cancel();
         }
     }
 
     @Inject(method={"showFloatingItem(Lnet/minecraft/item/ItemStack;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noTotem(ItemStack itemStack, CallbackInfo callbackInfo) {
+    private void alien$noTotem(ItemStack itemStack, CallbackInfo callbackInfo) {
         if (NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.totem.getObj()).booleanValue()) {
             callbackInfo.cancel();
         }

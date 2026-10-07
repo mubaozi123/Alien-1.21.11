@@ -21,7 +21,7 @@ public final class BufferUtil2 {
 
     public static Identifier m52(Object object) {
         String string = (String)object;
-        return Identifier.of((String)"trollhack-recode", (String)string);
+        return Identifier.of((String)"alien", (String)string);
     }
 
     /*

@@ -19,7 +19,7 @@ extends Module {
     private final EnumSetting message = (EnumSetting)this.m28(new EnumSetting("Message", MessageMode.NAME));
     private final EnumSetting separator = (EnumSetting)this.m28(new EnumSetting("Separator", SeparatorMode.NONE));
     private final BooleanSetting commands = (BooleanSetting)this.m28(new BooleanSetting("Commands", false));
-    private final StringSetting customText = (StringSetting)this.m28(new StringSetting("CustomText", "TrollHack"));
+    private final StringSetting customText = (StringSetting)this.m28(new StringSetting("CustomText", "Alien"));
 
     public ChatSuffix() {
         super("ChatSuffix", "Add a custom suffix to your chat messages.", Category.CHAT);
@@ -64,7 +64,7 @@ extends Module {
      * Unable to fully structure code
      */
     private String getText6() {
-        String base = this.message.getObj() == MessageMode.NAME ? "TrollHack" : (String)this.customText.getObj();
+        String base = this.message.getObj() == MessageMode.NAME ? "Alien" : (String)this.customText.getObj();
         SeparatorMode separatorMode = (SeparatorMode)this.separator.getObj();
         if (separatorMode == SeparatorMode.SEPARATOR) {
             return " | " + base;

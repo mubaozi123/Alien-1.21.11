@@ -32,7 +32,7 @@ import shit.module.movement.NoSlow;
 @Mixin(value={ClientPlayerEntity.class})
 public class LocalPlayerMixin {
     @Inject(method={"sendMovementPackets()V"}, at={@At(value="HEAD")})
-    private void trollhack$sendPositionPre(CallbackInfo callbackInfo) {
+    private void alien$sendPositionPre(CallbackInfo callbackInfo) {
         ClientPlayerEntity clientPlayerEntity = (ClientPlayerEntity)(Object)this;
         if (Client.mathUtil.isSet111()) {
             Client.mathUtil.setObj37(clientPlayerEntity);
@@ -72,7 +72,7 @@ public class LocalPlayerMixin {
     }
 
     @ModifyVariable(method={"move(Lnet/minecraft/entity/MovementType;Lnet/minecraft/util/math/Vec3d;)V"}, at=@At(value="HEAD"), argsOnly=true)
-    private Vec3d trollhack$onMove(Vec3d vec3d, MovementType movementType) {
+    private Vec3d alien$onMove(Vec3d vec3d, MovementType movementType) {
         MoveEvent moveEvent = new MoveEvent(vec3d.x, vec3d.y, vec3d.z);
         Client.eventBus.m287(moveEvent);
         if (moveEvent.isSet85()) {

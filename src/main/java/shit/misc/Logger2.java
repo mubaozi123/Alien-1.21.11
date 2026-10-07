@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 @Environment(value=EnvType.CLIENT)
 public class Logger2 {
-    private static final Logger logger = LoggerFactory.getLogger("TrollHack-Recode");
+    private static final Logger logger = LoggerFactory.getLogger("Alien");
     private static final MinecraftClient client4 = MinecraftClient.getInstance();
 
     private String m943(Object object, Object object2) {

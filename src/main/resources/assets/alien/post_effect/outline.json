@@ -1,11 +1,11 @@
 {
   "targets": {
-    "trollhack-recode:esp_swap": {}
+    "alien:esp_swap": {}
   },
   "passes": [
     {
       "vertex_shader": "minecraft:core/screenquad",
-      "fragment_shader": "trollhack-recode:post/bloom",
+      "fragment_shader": "alien:post/outline",
       "inputs": [
         {
           "sampler_name": "In",
@@ -13,7 +13,7 @@
           "bilinear": true
         }
       ],
-      "output": "trollhack-recode:esp_swap",
+      "output": "alien:esp_swap",
       "uniforms": {
         "ShaderConfig": []
       }
@@ -24,7 +24,7 @@
       "inputs": [
         {
           "sampler_name": "In",
-          "target": "trollhack-recode:esp_swap"
+          "target": "alien:esp_swap"
         }
       ],
       "uniforms": {

@@ -33,14 +33,14 @@ public class LightTextureMixin {
     private GpuTextureView glTextureView;
 
     @Inject(method={"getDarkness(Lnet/minecraft/entity/LivingEntity;FF)F"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noDarkness(LivingEntity livingEntity, float f, float f2, CallbackInfoReturnable callbackInfoReturnable) {
+    private void alien$noDarkness(LivingEntity livingEntity, float f, float f2, CallbackInfoReturnable callbackInfoReturnable) {
         if (NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.darkness.getObj()).booleanValue()) {
             callbackInfoReturnable.setReturnValue((Object)Float.valueOf(0.0f));
         }
     }
 
     @Inject(method={"update(F)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$worldColor(float f, CallbackInfo callbackInfo) {
+    private void alien$worldColor(float f, CallbackInfo callbackInfo) {
         Fullbright fullbright = Fullbright.INSTANCE;
         if (fullbright != null && fullbright.isSet19()) {
             Lightmap.field33 = this.buffer;

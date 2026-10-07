@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(value={SimpleOption.class})
 public interface OptionInstanceAccessor {
     @Invoker(value="setValue")
-    public void trollhack$set(Object var1);
+    public void alien$set(Object var1);
 }
 

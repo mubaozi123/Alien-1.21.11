@@ -20,7 +20,7 @@ import shit.util.RenderUtil;
 @Mixin(value={InGameHud.class})
 public class GuiMixin {
     @Inject(method={"render(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/render/RenderTickCounter;)V"}, at={@At(value="TAIL")})
-    private void trollhack$render2D(DrawContext drawContext, RenderTickCounter renderTickCounter, CallbackInfo callbackInfo) {
+    private void alien$render2D(DrawContext drawContext, RenderTickCounter renderTickCounter, CallbackInfo callbackInfo) {
         Client.helper.m818();
         Client.eventBus.m287(new Render2DEvent(drawContext, renderTickCounter));
         RenderUtil.setObj31(drawContext);

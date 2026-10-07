@@ -21,7 +21,7 @@ import shit.setting.ColorSetting2;
 @Mixin(value={Keyboard.class})
 public class KeyboardHandlerMixin {
     @Inject(method={"onKey(JILnet/minecraft/client/input/KeyInput;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$keyPress(long l, int n, KeyInput keyInput, CallbackInfo callbackInfo) {
+    private void alien$keyPress(long l, int n, KeyInput keyInput, CallbackInfo callbackInfo) {
         KeyPressEvent keyPressEvent = (KeyPressEvent)Client.eventBus.m287(new KeyPressEvent(n, keyInput));
         if (keyPressEvent.isSet85()) {
             callbackInfo.cancel();

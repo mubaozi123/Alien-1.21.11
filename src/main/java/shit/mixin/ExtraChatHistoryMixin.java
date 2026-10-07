@@ -15,7 +15,7 @@ import shit.module.chat.ExtraChatHistory;
 @Mixin(value={ChatHud.class})
 public class ExtraChatHistoryMixin {
     @ModifyConstant(method={"addMessage(Lnet/minecraft/client/gui/hud/ChatHudLine;)V"}, constant={@Constant(intValue=100)})
-    private int trollhack$maxMessages(int n) {
+    private int alien$maxMessages(int n) {
         return ExtraChatHistory.INSTANCE != null ? ExtraChatHistory.INSTANCE.getInt33() : n;
     }
 }

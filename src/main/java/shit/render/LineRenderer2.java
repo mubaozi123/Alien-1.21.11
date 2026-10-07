@@ -8378,7 +8378,7 @@ public class LineRenderer2 {
             mutableCallSite.setTarget(MethodHandles.explicitCastArguments(MethodHandles.insertArguments(cfr_ldc_0().asCollector(Object[].class, methodType.parameterCount()), 0, lookup, mutableCallSite, string, methodType), methodType));
         }
         catch (Exception exception) {
-            throw new RuntimeException("TrollHackProtect/hDQnN8M8QyKHB7ksMc5Tw5QIHhmxeN" + " : " + string + " : " + methodType.toString(), exception);
+            throw new RuntimeException("AlienProtect/hDQnN8M8QyKHB7ksMc5Tw5QIHhmxeN" + " : " + string + " : " + methodType.toString(), exception);
         }
         return mutableCallSite;
     }

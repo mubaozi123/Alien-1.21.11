@@ -6,7 +6,7 @@ package shit;
 import net.fabricmc.api.ModInitializer;
 import shit.misc.Logger;
 
-public final class TrollHackRecodeEntrypoint
+public final class AlienEntrypoint
 implements ModInitializer {
     private static String text3367;
 
@@ -23,7 +23,7 @@ implements ModInitializer {
     }
 
     static {
-        TrollHackRecodeEntrypoint.setText11("xFFDX");
+        AlienEntrypoint.setText11("xFFDX");
     }
 }
 

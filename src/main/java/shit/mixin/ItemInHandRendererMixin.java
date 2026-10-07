@@ -49,10 +49,10 @@ public class ItemInHandRendererMixin {
     @Mutable
     private float lastEquipProgressOffHand;
     @Unique
-    private static final ThreadLocal trollhack$capturedHand = new ThreadLocal();
+    private static final ThreadLocal alien$capturedHand = new ThreadLocal();
 
     @Inject(method={"renderItem(FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;Lnet/minecraft/client/network/ClientPlayerEntity;I)V"}, at={@At(value="HEAD")})
-    private void trollhack$instantSwap(float f, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, ClientPlayerEntity clientPlayerEntity, int n, CallbackInfo callbackInfo) {
+    private void alien$instantSwap(float f, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, ClientPlayerEntity clientPlayerEntity, int n, CallbackInfo callbackInfo) {
         ViewModel viewModel = ViewModel.INSTANCE;
         if (viewModel == null || !viewModel.isSet19()) {
             return;
@@ -70,17 +70,17 @@ public class ItemInHandRendererMixin {
     }
 
     @Inject(method={"renderFirstPersonItem(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/util/Hand;FLnet/minecraft/item/ItemStack;FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;I)V"}, at={@At(value="HEAD")})
-    private void trollhack$captureHand(AbstractClientPlayerEntity abstractClientPlayerEntity, float f, float f2, Hand hand, float f3, ItemStack itemStack, float f4, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, int n, CallbackInfo callbackInfo) {
-        trollhack$capturedHand.set(hand);
+    private void alien$captureHand(AbstractClientPlayerEntity abstractClientPlayerEntity, float f, float f2, Hand hand, float f3, ItemStack itemStack, float f4, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, int n, CallbackInfo callbackInfo) {
+        alien$capturedHand.set(hand);
     }
 
     @Inject(method={"renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemDisplayContext;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;I)V"}, at={@At(value="HEAD")})
-    private void trollhack$transform(LivingEntity livingEntity, ItemStack itemStack, ItemDisplayContext itemDisplayContext, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, int n, CallbackInfo callbackInfo) {
+    private void alien$transform(LivingEntity livingEntity, ItemStack itemStack, ItemDisplayContext itemDisplayContext, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, int n, CallbackInfo callbackInfo) {
         ViewModel viewModel = ViewModel.INSTANCE;
         if (viewModel == null || !viewModel.isSet19()) {
             return;
         }
-        Hand hand = (Hand)trollhack$capturedHand.get();
+        Hand hand = (Hand)alien$capturedHand.get();
         if (hand == null) {
             return;
         }
@@ -100,7 +100,7 @@ public class ItemInHandRendererMixin {
     }
 
     @Redirect(method={"renderItem(FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;Lnet/minecraft/client/network/ClientPlayerEntity;I)V"}, at=@At(value="INVOKE", target="Lnet/minecraft/util/math/RotationAxis;rotationDegrees(F)Lorg/joml/Quaternionf;"))
-    private Quaternionf trollhack$noSway(RotationAxis rotationAxis, float f) {
+    private Quaternionf alien$noSway(RotationAxis rotationAxis, float f) {
         ViewModel viewModel = ViewModel.INSTANCE;
         if (viewModel != null && viewModel.isSet19() && ((Boolean)viewModel.noSway.getObj()).booleanValue()) {
             return new Quaternionf();

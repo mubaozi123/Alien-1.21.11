@@ -17,7 +17,7 @@ import shit.module.render.NoRender;
 public class GuiHeartTypeMixin {
     @ModifyExpressionValue(method={"renderHealthBar"}, at={@At(value="INVOKE", target="Lnet/minecraft/client/gui/hud/InGameHud$HeartType;fromPlayerState(Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/client/gui/hud/InGameHud$HeartType;")})
     @Coerce
-    private Object trollhack$noWitherHeart(@Coerce Object object) {
+    private Object alien$noWitherHeart(@Coerce Object object) {
         if (NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.witherHearts.getObj()).booleanValue() && object != null && object.toString().equals("WITHERED")) {
             for (Object obj : object.getClass().getEnumConstants()) {
                 if (!obj.toString().equals("NORMAL")) continue;

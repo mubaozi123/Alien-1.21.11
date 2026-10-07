@@ -17,7 +17,7 @@ import shit.module.chat.PortalChat;
 @Mixin(value={ClientPlayerEntity.class})
 public class PortalChatMixin {
     @Redirect(method={"tickNausea(Z)V"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V"))
-    private void trollhack$portalChat(MinecraftClient minecraftClient, Screen screen) {
+    private void alien$portalChat(MinecraftClient minecraftClient, Screen screen) {
         if (screen == null && PortalChat.INSTANCE != null && PortalChat.INSTANCE.isSet19()) {
             return;
         }

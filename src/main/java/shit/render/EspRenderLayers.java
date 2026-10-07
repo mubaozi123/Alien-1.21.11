@@ -87,7 +87,7 @@ implements MC {
             String string = (String)object2;
             RenderPipeline renderPipeline = renderLayer2.getRenderPipeline();
             RenderPipeline.Builder builder = RenderPipeline.builder((RenderPipeline.Snippet[])new RenderPipeline.Snippet[0]);
-            builder.withLocation(Identifier.of((String)"trollhack-recode", (String)("pipeline/" + string)));
+            builder.withLocation(Identifier.of((String)"alien", (String)("pipeline/" + string)));
             builder.withVertexShader(renderPipeline.getVertexShader());
             builder.withFragmentShader(renderPipeline.getFragmentShader());
             builder.withVertexFormat(renderPipeline.getVertexFormat(), renderPipeline.getVertexFormatMode());
@@ -108,7 +108,7 @@ implements MC {
                 if (null == null) continue;
             }
             RenderSetup renderSetup = RenderSetup.builder((RenderPipeline)builder.build()).build();
-            renderLayer = RenderLayers.m79("trollhack_" + string, renderSetup);
+            renderLayer = RenderLayers.m79("alien_" + string, renderSetup);
             if (Module.getTextArray9() != null) break block2;
             EspRenderLayers.setText9("wfG9S");
         }

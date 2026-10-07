@@ -9,7 +9,7 @@ import net.fabricmc.api.Environment;
 import shit.misc.Auth;
 
 @Environment(value=EnvType.CLIENT)
-public final class TrollHackRecodeClientEntrypoint
+public final class AlienClientEntrypoint
 implements ClientModInitializer {
     public void onInitializeClient() {
         new Auth().onInitializeClient();

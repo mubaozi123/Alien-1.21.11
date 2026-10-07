@@ -63,7 +63,7 @@ public class ShaderProgram {
         String string2 = Pos.getText67();
         try {
             String string3;
-            Identifier identifier = Identifier.of((String)"trollhack-recode", (String)("shaders/" + string));
+            Identifier identifier = Identifier.of((String)"alien", (String)("shaders/" + string));
             String string4 = string3 = new String(((Resource)MinecraftClient.getInstance().getResourceManager().getResource(identifier).orElseThrow()).getInputStream().readAllBytes(), StandardCharsets.UTF_8);
             if (string2 == null) {
                 string4 = string4.startsWith("\ufeff") ? string3.substring(1) : string3;

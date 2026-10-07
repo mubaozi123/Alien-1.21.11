@@ -53,7 +53,7 @@ public final class TextureRenderer2 {
             if (nativeImage == null) {
                 return null;
             }
-            Identifier identifier = Identifier.of((String)"trollhack-recode", (String)("skin/custom_" + TextureRenderer2.m525(string2)));
+            Identifier identifier = Identifier.of((String)"alien", (String)("skin/custom_" + TextureRenderer2.m525(string2)));
             ResourceEntry resourceEntry2 = new ResourceEntry(identifier, data.flag8(), string, System.currentTimeMillis());
             map38.put(string2, resourceEntry2);
             NativeImage nativeImage2 = nativeImage;
@@ -188,7 +188,7 @@ public final class TextureRenderer2 {
         httpURLConnection.setRequestMethod("GET");
         httpURLConnection.setConnectTimeout(5000);
         httpURLConnection.setReadTimeout(n2);
-        httpURLConnection.setRequestProperty("User-Agent", "TrollHack-Recode/1.0");
+        httpURLConnection.setRequestProperty("User-Agent", "Alien/1.0");
         return httpURLConnection;
     }
 

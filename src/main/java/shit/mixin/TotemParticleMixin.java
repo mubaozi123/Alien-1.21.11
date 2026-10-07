@@ -23,14 +23,14 @@ public abstract class TotemParticleMixin {
     @Inject(method={"<init>(Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;)V"}, at={@At(value="TAIL")})
     private void m893(ClientWorld clientWorld, double d, double d2, double d3, double d4, double d5, double d6, SpriteProvider spriteProvider, CallbackInfo callbackInfo) {
         ParticleAccessor particleAccessor = (ParticleAccessor)((Object)this);
-        HookTotemParticleInitEvent hookTotemParticleInitEvent = new HookTotemParticleInitEvent(particleAccessor.trollhack$getXd(), particleAccessor.trollhack$getYd(), particleAccessor.trollhack$getZd());
+        HookTotemParticleInitEvent hookTotemParticleInitEvent = new HookTotemParticleInitEvent(particleAccessor.alien$getXd(), particleAccessor.alien$getYd(), particleAccessor.alien$getZd());
         Client.eventBus.m287(hookTotemParticleInitEvent);
         if (!hookTotemParticleInitEvent.isSet85()) {
             return;
         }
-        particleAccessor.trollhack$setXd(hookTotemParticleInitEvent.value129);
-        particleAccessor.trollhack$setYd(hookTotemParticleInitEvent.value200);
-        particleAccessor.trollhack$setZd(hookTotemParticleInitEvent.value123);
+        particleAccessor.alien$setXd(hookTotemParticleInitEvent.value129);
+        particleAccessor.alien$setYd(hookTotemParticleInitEvent.value200);
+        particleAccessor.alien$setZd(hookTotemParticleInitEvent.value123);
         if (hookTotemParticleInitEvent.count184 != 0) {
             ((AnimatedParticle)(Object)this).setColor(hookTotemParticleInitEvent.count184 & 0xFFFFFF);
         }

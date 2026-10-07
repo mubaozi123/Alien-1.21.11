@@ -26,14 +26,14 @@ import shit.event.PlayerEvent;
 @Mixin(value={ClientConnection.class})
 public class ConnectionMixin {
     @Inject(method={"sendImmediately(Lnet/minecraft/network/packet/Packet;Lio/netty/channel/ChannelFutureListener;Z)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$sendPacket(Packet packet, ChannelFutureListener channelFutureListener, boolean bl, CallbackInfo callbackInfo) {
+    private void alien$sendPacket(Packet packet, ChannelFutureListener channelFutureListener, boolean bl, CallbackInfo callbackInfo) {
         if (((PacketEvent.PacketEventInner2)Client.eventBus.m287(new PacketEvent.PacketEventInner2(packet))).isSet85()) {
             callbackInfo.cancel();
         }
     }
 
     @Inject(method={"channelRead0(Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/packet/Packet;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$channelRead(ChannelHandlerContext channelHandlerContext, Packet packet, CallbackInfo callbackInfo) {
+    private void alien$channelRead(ChannelHandlerContext channelHandlerContext, Packet packet, CallbackInfo callbackInfo) {
         EntityStatusS2CPacket entityStatusS2CPacket;
         if (((PacketEvent.PacketEventInner)Client.eventBus.m287(new PacketEvent.PacketEventInner(packet))).isSet85()) {
             callbackInfo.cancel();

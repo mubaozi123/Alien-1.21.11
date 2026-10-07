@@ -4,4 +4,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = "opentroll-recode"
+rootProject.name = "Alien"

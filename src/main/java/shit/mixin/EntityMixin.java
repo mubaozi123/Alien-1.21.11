@@ -28,7 +28,7 @@ public class EntityMixin {
     }
 
     @Inject(method={"pushAwayFrom(Lnet/minecraft/entity/Entity;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noEntityPush(Entity entity, CallbackInfo callbackInfo) {
+    private void alien$noEntityPush(Entity entity, CallbackInfo callbackInfo) {
         Velocity velocity = Velocity.INSTANCE;
         if ((Object) this instanceof ClientPlayerEntity && velocity != null && velocity.isSet19() && (Boolean) velocity.noEntityPush.getObj()) {
             callbackInfo.cancel();
@@ -36,7 +36,7 @@ public class EntityMixin {
     }
 
     @Inject(method={"pushOutOfBlocks(DDD)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$noBlockPush(double d, double d2, double d3, CallbackInfo callbackInfo) {
+    private void alien$noBlockPush(double d, double d2, double d3, CallbackInfo callbackInfo) {
         Velocity velocity = Velocity.INSTANCE;
         if ((Object) this instanceof ClientPlayerEntity && velocity != null && velocity.isSet19() && (Boolean) velocity.noBlockPush.getObj()) {
             callbackInfo.cancel();
@@ -44,7 +44,7 @@ public class EntityMixin {
     }
 
     @Redirect(method={"updateMovementInFluid(Lnet/minecraft/registry/tag/TagKey;D)Z"}, at=@At(value="INVOKE", target="Lnet/minecraft/entity/Entity;setVelocity(Lnet/minecraft/util/math/Vec3d;)V"))
-    private void trollhack$noWaterPush(Entity self, Vec3d vec3d) {
+    private void alien$noWaterPush(Entity self, Vec3d vec3d) {
         Velocity velocity = Velocity.INSTANCE;
         if ((Object) this instanceof ClientPlayerEntity && velocity != null && velocity.isSet19() && (Boolean) velocity.noWaterPush.getObj()) {
             return;

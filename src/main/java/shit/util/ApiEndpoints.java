@@ -17,7 +17,7 @@ final class ApiEndpoints {
 
     static String m39(Object object) {
         String string = (String)object;
-        return "https://download.neko.antichest.pw/api/trollhack/index.php?route=" + string;
+        return "https://download.neko.antichest.pw/api/alien/index.php?route=" + string;
     }
 }
 

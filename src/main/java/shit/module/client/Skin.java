@@ -30,7 +30,7 @@ extends Module {
     private final BooleanSetting cape = (BooleanSetting)this.m28(new BooleanSetting("Cape", true));
     private final EnumSetting capeType = (EnumSetting)this.m28(new EnumSetting("CapeType", EMode.MELON));
     private final ExecutorService executorService2 = Executors.newSingleThreadExecutor(runnable -> {
-        Thread thread = new Thread(runnable, "TrollHack-SkinFetcher");
+        Thread thread = new Thread(runnable, "Alien-SkinFetcher");
         thread.setDaemon(true);
         return thread;
     });
@@ -204,8 +204,8 @@ extends Module {
 
     public AssetInfo.TextureAsset getObj10() {
         String string = ((EMode)((Object)this.capeType.getObj())).text2996;
-        Identifier identifier = Identifier.of((String)"trollhack-recode", (String)("cape/" + string));
-        Identifier identifier2 = Identifier.of((String)"trollhack-recode", (String)("cape/" + string));
+        Identifier identifier = Identifier.of((String)"alien", (String)("cape/" + string));
+        Identifier identifier2 = Identifier.of((String)"alien", (String)("cape/" + string));
         return new AssetInfo.TextureAssetInfo(identifier, identifier2);
     }
 

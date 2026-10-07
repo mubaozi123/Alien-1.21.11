@@ -21,7 +21,7 @@ public abstract class CameraMixin {
     protected abstract float clipToSpace(float var1);
 
     @Inject(method={"clipToSpace(F)F"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$clipDistance(float f, CallbackInfoReturnable callbackInfoReturnable) {
+    private void alien$clipDistance(float f, CallbackInfoReturnable callbackInfoReturnable) {
         Camera camera = Camera.INSTANCE;
         if (camera != null && camera.isSet131()) {
             callbackInfoReturnable.setReturnValue((Object)Float.valueOf(camera.clipDistance.getFloat35()));
@@ -37,7 +37,7 @@ public abstract class CameraMixin {
     }
 
     @ModifyArgs(method={"update(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;ZZF)V"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/render/Camera;setPos(DDD)V"))
-    private void trollhack$motionCameraPos(Args args) {
+    private void alien$motionCameraPos(Args args) {
         Camera camera = Camera.INSTANCE;
         if (camera != null && camera.isSet74()) {
             args.set(0, (Object)camera.getDouble9());

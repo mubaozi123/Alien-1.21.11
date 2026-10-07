@@ -43,7 +43,7 @@ public class Blur2 {
                     string = Pos.getText67();
                     this.count162 = Math.max(1, (int)((double)window.getFramebufferHeight() * this.value167));
                     int n = 15;
-                    gpuTexture = gpuTexture2 = (this.gpuTexture2 = RenderSystem.getDevice().createTexture(() -> "trollhack blur framebuffer", n, TextureFormat.RGBA8, this.count174, this.count162, 1, 1));
+                    gpuTexture = gpuTexture2 = (this.gpuTexture2 = RenderSystem.getDevice().createTexture(() -> "alien blur framebuffer", n, TextureFormat.RGBA8, this.count174, this.count162, 1, 1));
                     if (string != null) break block2;
                     if (!(gpuTexture instanceof GlTexture)) break block3;
                     gpuTexture = gpuTexture2;

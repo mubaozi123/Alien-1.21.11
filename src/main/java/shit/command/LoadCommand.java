@@ -28,7 +28,7 @@ import shit.util.ApiEndpoints3;
 public class LoadCommand
 extends Command {
     public LoadCommand() {
-        super("load", "Loads local or TrollHack cloud configs.", "load [list|clone <all|module|binds> <name>]");
+        super("load", "Loads local or Alien cloud configs.", "load [list|clone <all|module|binds> <name>]");
     }
 
     @Override
@@ -132,7 +132,7 @@ extends Command {
             CommandManager.setObj21("Cloud config name is required.");
             return;
         }
-        CommandManager.setObj21("Downloading TrollHack cloud config " + string2 + "...");
+        CommandManager.setObj21("Downloading Alien cloud config " + string2 + "...");
         try {
             JsonObject jsonObject;
             block10: {

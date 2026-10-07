@@ -45,7 +45,7 @@ public final class Client {
             commandManager.m351();
             configManager.m256();
             Object var1 = null;
-            Logger.logger2.info("{} client initialized.", (Object)"TrollHack-Recode");
+            Logger.logger2.info("{} client initialized.", (Object)"Alien");
             if (null == null) break block0;
             Module.setTextArray9(new String[1]);
         }

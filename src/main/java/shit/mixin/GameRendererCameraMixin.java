@@ -23,7 +23,7 @@ public class GameRendererCameraMixin {
     private float viewDistanceBlocks;
 
     @Inject(method={"getFov(Lnet/minecraft/client/render/Camera;FZ)F"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$getFov(net.minecraft.client.render.Camera camera, float f, boolean bl, CallbackInfoReturnable callbackInfoReturnable) {
+    private void alien$getFov(net.minecraft.client.render.Camera camera, float f, boolean bl, CallbackInfoReturnable callbackInfoReturnable) {
         Camera camera2 = Camera.INSTANCE;
         if (camera2 == null || !camera2.isSet70()) {
             return;

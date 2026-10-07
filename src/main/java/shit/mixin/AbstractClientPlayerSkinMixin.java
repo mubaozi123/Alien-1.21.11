@@ -18,7 +18,7 @@ import shit.module.client.Skin;
 @Mixin(value={AbstractClientPlayerEntity.class})
 public abstract class AbstractClientPlayerSkinMixin {
     @Inject(method={"getSkin()Lnet/minecraft/entity/player/SkinTextures;"}, at={@At(value="RETURN")}, cancellable=true)
-    private void trollhack$skin(CallbackInfoReturnable callbackInfoReturnable) {
+    private void alien$skin(CallbackInfoReturnable callbackInfoReturnable) {
         Skin skin = Skin.INSTANCE;
         if (skin == null || !skin.isSet19()) {
             return;

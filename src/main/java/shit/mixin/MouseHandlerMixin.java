@@ -19,7 +19,7 @@ import shit.setting.ColorSetting2;
 @Mixin(value={Mouse.class})
 public class MouseHandlerMixin {
     @Inject(method={"onMouseButton(JLnet/minecraft/client/input/MouseInput;I)V"}, at={@At(value="HEAD")})
-    private void trollhack$onMousePress(long l, MouseInput mouseInput, int n, CallbackInfo callbackInfo) {
+    private void alien$onMousePress(long l, MouseInput mouseInput, int n, CallbackInfo callbackInfo) {
         int n2 = ColorSetting2.m559(mouseInput.button());
         for (Module module : Client.moduleManager.getList6()) {
             ColorSetting2 colorSetting2 = module.getColorSetting2();

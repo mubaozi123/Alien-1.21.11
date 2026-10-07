@@ -80,7 +80,7 @@ extends Module {
     private static void setObj42(Object object) {
         try {
             String string = (String)object;
-            Path path = Path.of("trollhack-logs", new String[0]);
+            Path path = Path.of("alien-logs", new String[0]);
             Files.createDirectories(path, new FileAttribute[0]);
             Files.writeString(path.resolve("coords.log"), (CharSequence)(string + System.lineSeparator()), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         }

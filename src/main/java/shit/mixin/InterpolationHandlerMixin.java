@@ -23,7 +23,7 @@ public class InterpolationHandlerMixin {
     }
 
     @Inject(method={"refreshPositionAndAngles(Lnet/minecraft/util/math/Vec3d;FF)V"}, at={@At(value="TAIL")})
-    private void trollhack$noLerp(Vec3d vec3d, float f, float f2, CallbackInfo callbackInfo) {
+    private void alien$noLerp(Vec3d vec3d, float f, float f2, CallbackInfo callbackInfo) {
         Disabler disabler = Disabler.INSTANCE;
         if (disabler != null && disabler.isSet19() && ((Boolean)disabler.lerp.getObj()).booleanValue()) {
             this.setLerpDuration(1);

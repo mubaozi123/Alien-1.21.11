@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(value={MinecraftClient.class})
 public interface MinecraftAccessor {
     @Accessor(value="currentFps")
-    public static int trollhack$getFps() {
+    public static int alien$getFps() {
         return 0;
     }
 
@@ -25,6 +25,6 @@ public interface MinecraftAccessor {
     public void setInt15(int var1);
 
     @Accessor(value="currentScreen")
-    public void trollhack$setScreen(Screen var1);
+    public void alien$setScreen(Screen var1);
 }
 

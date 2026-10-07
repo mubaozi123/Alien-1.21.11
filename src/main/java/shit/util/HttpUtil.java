@@ -58,9 +58,9 @@ public final class HttpUtil {
      */
     public static String getText28() {
         Object var1 = null;
-        if (text1914 == null) return "Start TrollHack through the personalized Loader.";
+        if (text1914 == null) return "Start Alien through the personalized Loader.";
         if (text1914.isBlank()) {
-            return "Start TrollHack through the personalized Loader.";
+            return "Start Alien through the personalized Loader.";
         }
         String string = text1914;
         return string;
@@ -74,10 +74,10 @@ public final class HttpUtil {
         Data data = HttpUtil.getData();
         Object var1_1 = null;
         if (data == null) return false;
-        if (!"trollhack-recode".equals(data.text15())) return false;
+        if (!"alien".equals(data.text15())) return false;
         if (!HttpUtil.isSet115()) return false;
-        if (HttpUtil.m449("TROLLHACK_LAUNCH_SECRET").isBlank()) return false;
-        if (HttpUtil.m449("TROLLHACK_LAUNCH_NONCE").isBlank()) return false;
+        if (HttpUtil.m449("ALIEN_LAUNCH_SECRET").isBlank()) return false;
+        if (HttpUtil.m449("ALIEN_LAUNCH_NONCE").isBlank()) return false;
         return true;
     }
 
@@ -93,17 +93,17 @@ public final class HttpUtil {
                 data = HttpUtil.getData();
                 Object var3_3 = null;
                 if (data == null) {
-                    return HttpUtil.m863("Loader session is missing. Download and start the personalized TrollHack Loader.");
+                    return HttpUtil.m863("Loader session is missing. Download and start the personalized Alien Loader.");
                 }
-                if (!"trollhack-recode".equals(data.text15())) {
+                if (!"alien".equals(data.text15())) {
                     return HttpUtil.m863("Loader session is for another client.");
                 }
                 if (!HttpUtil.isSet115()) {
-                    return HttpUtil.m863("This runtime must be started by the TrollHack Loader.");
+                    return HttpUtil.m863("This runtime must be started by the Alien Loader.");
                 }
-                string3 = HttpUtil.m449("TROLLHACK_LAUNCH_SECRET");
-                string2 = HttpUtil.m449("TROLLHACK_LAUNCH_NONCE");
-                string = HttpUtil.m449("TROLLHACK_SESSION_ID");
+                string3 = HttpUtil.m449("ALIEN_LAUNCH_SECRET");
+                string2 = HttpUtil.m449("ALIEN_LAUNCH_NONCE");
+                string = HttpUtil.m449("ALIEN_SESSION_ID");
                 if (string3.isBlank()) break block13;
                 if (!string2.isBlank()) break block14;
             }
@@ -168,7 +168,7 @@ public final class HttpUtil {
                 catch (Throwable throwable) {}
                 break;
             }
-        }, "TrollHack-Loader-Session");
+        }, "Alien-Loader-Session");
         thread.setDaemon(true);
         thread.start();
     }
@@ -183,7 +183,7 @@ public final class HttpUtil {
             String string;
             block7: {
                 block6: {
-                    string = HttpUtil.m301("/loader/runtime-heartbeat", HttpUtil.m112(data, HttpUtil.m449("TROLLHACK_LAUNCH_SECRET"), HttpUtil.m449("TROLLHACK_LAUNCH_NONCE"), "heartbeat"));
+                    string = HttpUtil.m301("/loader/runtime-heartbeat", HttpUtil.m112(data, HttpUtil.m449("ALIEN_LAUNCH_SECRET"), HttpUtil.m449("ALIEN_LAUNCH_NONCE"), "heartbeat"));
                     if (string.contains("\"allowed\":true")) break block6;
                     if (!string.contains("\"ok\":true")) break block7;
                 }
@@ -205,7 +205,7 @@ public final class HttpUtil {
         String string = (String)object2;
         String string2 = (String)object3;
         String string3 = (String)object4;
-        String string4 = HttpUtil.m449("TROLLHACK_PACKAGE_SHA256");
+        String string4 = HttpUtil.m449("ALIEN_PACKAGE_SHA256");
         Object var9_9 = null;
         if (string4.isBlank()) {
             string4 = data.text18();
@@ -219,7 +219,7 @@ public final class HttpUtil {
         String string11 = HttpUtil.m956(string2);
         String string12 = HttpUtil.m956(string);
         String string13 = HttpUtil.m956(data.text14());
-        return "{\"sessionId\":\"" + string13 + "\",\"launchSecret\":\"" + string12 + "\",\"launchNonce\":\"" + string11 + "\",\"hwid\":\"" + string10 + "\",\"client\":\"trollhack-recode\",\"version\":\"" + string9 + "\",\"phase\":\"" + string8 + "\",\"packageSha256\":\"" + string7 + "\",\"runtimeSha256\":\"" + string6 + "\",\"watermarkSig\":\"" + string5 + "\"}";
+        return "{\"sessionId\":\"" + string13 + "\",\"launchSecret\":\"" + string12 + "\",\"launchNonce\":\"" + string11 + "\",\"hwid\":\"" + string10 + "\",\"client\":\"alien\",\"version\":\"" + string9 + "\",\"phase\":\"" + string8 + "\",\"packageSha256\":\"" + string7 + "\",\"runtimeSha256\":\"" + string6 + "\",\"watermarkSig\":\"" + string5 + "\"}";
     }
 
     /*
@@ -243,7 +243,7 @@ public final class HttpUtil {
                 return data2;
             }
             flag78 = true;
-            try (InputStream inputStream = HttpUtil.class.getResourceAsStream("/assets/trollhack-recode/loader-session.dat");){
+            try (InputStream inputStream = HttpUtil.class.getResourceAsStream("/assets/alien/loader-session.dat");){
                 long l;
                 String string;
                 String string2;
@@ -287,8 +287,8 @@ public final class HttpUtil {
      */
     private static boolean isSet115() {
         Object var1 = null;
-        if ("1".equals(HttpUtil.m449("TROLLHACK_LOADER_LAUNCH"))) return true;
-        if (!"true".equalsIgnoreCase(System.getProperty("trollhack.loader.launch", ""))) return false;
+        if ("1".equals(HttpUtil.m449("ALIEN_LOADER_LAUNCH"))) return true;
+        if (!"true".equalsIgnoreCase(System.getProperty("alien.loader.launch", ""))) return false;
         return true;
     }
 
@@ -549,7 +549,7 @@ public final class HttpUtil {
     }
 
     static {
-        text1914 = "Start TrollHack through the personalized Loader.";
+        text1914 = "Start Alien through the personalized Loader.";
         text470 = "";
     }
 

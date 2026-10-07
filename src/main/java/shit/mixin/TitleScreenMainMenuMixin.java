@@ -35,10 +35,10 @@ import shit.module.client.MainMenu;
 @Mixin(value={TitleScreen.class})
 public class TitleScreenMainMenuMixin {
     @Unique
-    private final List<shit.misc.RenderUtil2> trollhack$buttons = new ArrayList<>();
+    private final List<shit.misc.RenderUtil2> alien$buttons = new ArrayList<>();
 
     @Inject(method={"init()V"}, at={@At(value="TAIL")})
-    private void trollhack$onInit(CallbackInfo callbackInfo) {
+    private void alien$onInit(CallbackInfo callbackInfo) {
         MainMenu mainMenu = MainMenu.INSTANCE;
         if (mainMenu != null) {
             mainMenu.m590();
@@ -47,20 +47,20 @@ public class TitleScreenMainMenuMixin {
             return;
         }
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        this.trollhack$buttons.clear();
-        ((ScreenAccessor)((Object)this)).trollhack$clearWidgets();
+        this.alien$buttons.clear();
+        ((ScreenAccessor)((Object)this)).alien$clearWidgets();
         TitleScreen titleScreen = (TitleScreen)(Object)this;
-        this.trollhack$buttons.add(new RenderUtil2("Singleplayer", 30.0f, () -> minecraftClient.setScreen((Screen)new SelectWorldScreen((Screen)titleScreen))));
-        this.trollhack$buttons.add(new RenderUtil2("Multiplayer", 30.0f, () -> minecraftClient.setScreen((Screen)new MultiplayerScreen((Screen)titleScreen))));
-        this.trollhack$buttons.add(new RenderUtil2("Options", 30.0f, () -> minecraftClient.setScreen((Screen)new OptionsScreen((Screen)titleScreen, minecraftClient.options))));
-        this.trollhack$buttons.add(new RenderUtil2("Exit", 30.0f, () -> ((MinecraftClient)minecraftClient).scheduleStop()));
-        this.trollhack$layoutButtons(minecraftClient);
+        this.alien$buttons.add(new RenderUtil2("Singleplayer", 30.0f, () -> minecraftClient.setScreen((Screen)new SelectWorldScreen((Screen)titleScreen))));
+        this.alien$buttons.add(new RenderUtil2("Multiplayer", 30.0f, () -> minecraftClient.setScreen((Screen)new MultiplayerScreen((Screen)titleScreen))));
+        this.alien$buttons.add(new RenderUtil2("Options", 30.0f, () -> minecraftClient.setScreen((Screen)new OptionsScreen((Screen)titleScreen, minecraftClient.options))));
+        this.alien$buttons.add(new RenderUtil2("Exit", 30.0f, () -> ((MinecraftClient)minecraftClient).scheduleStop()));
+        this.alien$layoutButtons(minecraftClient);
         this.setClient(minecraftClient);
         ScreenMouseEvents.afterMouseClick((Screen)titleScreen).register((screen, click, bl) -> {
             if (!mainMenu.isSet110()) {
                 return bl;
             }
-            for (RenderUtil2 renderUtil2 : this.trollhack$buttons) {
+            for (RenderUtil2 renderUtil2 : this.alien$buttons) {
                 renderUtil2.m421(click.x(), click.y(), click.button());
             }
             return bl;
@@ -69,7 +69,7 @@ public class TitleScreenMainMenuMixin {
             if (!mainMenu.isSet110()) {
                 return bl;
             }
-            for (RenderUtil2 renderUtil2 : this.trollhack$buttons) {
+            for (RenderUtil2 renderUtil2 : this.alien$buttons) {
                 renderUtil2.m946(click.x(), click.y(), click.button());
             }
             return bl;
@@ -80,14 +80,14 @@ public class TitleScreenMainMenuMixin {
     private void setClient(MinecraftClient minecraftClient) {
         float f = 0.0f;
         if (Client.fontManager.isSet89()) {
-            for (RenderUtil2 renderUtil2 : this.trollhack$buttons) {
+            for (RenderUtil2 renderUtil2 : this.alien$buttons) {
                 float f2 = minecraftClient.textRenderer.getWidth(renderUtil2.getText71());
                 if (!(f2 > f)) continue;
                 f = f2;
             }
         } else {
             FontManager2 fontManager2 = Client.fontManager.renderer2();
-            for (RenderUtil2 renderUtil2 : this.trollhack$buttons) {
+            for (RenderUtil2 renderUtil2 : this.alien$buttons) {
                 float f3 = fontManager2.m277(renderUtil2.getText71());
                 if (!(f3 > f)) continue;
                 f = f3;
@@ -97,7 +97,7 @@ public class TitleScreenMainMenuMixin {
     }
 
     @Unique
-    private void trollhack$layoutButtons(MinecraftClient minecraftClient) {
+    private void alien$layoutButtons(MinecraftClient minecraftClient) {
         int n = minecraftClient.getWindow().getFramebufferWidth();
         int n2 = minecraftClient.getWindow().getFramebufferHeight();
         float f = Math.min((float)n / 6.0f, 300.0f);
@@ -108,12 +108,12 @@ public class TitleScreenMainMenuMixin {
         float f5 = (float)((double)f / d);
         float f6 = (float)(10.0 / d);
         float f7 = (float)((double)f2 / d);
-        int n3 = this.trollhack$buttons.size();
+        int n3 = this.alien$buttons.size();
         float f8 = (float)n3 * f5 + (float)(n3 - 1) * f6;
         float f9 = (f3 - f8) / 2.0f;
         float f10 = f4 - f7;
         for (int i = 0; i < n3; ++i) {
-            ((RenderUtil2)(Object)this.trollhack$buttons.get(i)).m803(f9 + (float)i * (f5 + f6), f10, f5);
+            ((RenderUtil2)(Object)this.alien$buttons.get(i)).m803(f9 + (float)i * (f5 + f6), f10, f5);
         }
     }
 
@@ -121,7 +121,7 @@ public class TitleScreenMainMenuMixin {
     private void m903(TitleScreen titleScreen, DrawContext drawContext, float f) {
         MainMenu mainMenu = MainMenu.INSTANCE;
         if (mainMenu == null || !mainMenu.isSet9()) {
-            ((ScreenAccessor)titleScreen).trollhack$renderPanorama(drawContext, f);
+            ((ScreenAccessor)titleScreen).alien$renderPanorama(drawContext, f);
             return;
         }
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
@@ -129,12 +129,12 @@ public class TitleScreenMainMenuMixin {
             ShaderProgramManager.render4((Object)mainMenu.getObj8(), minecraftClient.getWindow().getFramebufferWidth(), minecraftClient.getWindow().getFramebufferHeight(), (double)drawContext.getScaledWindowWidth() / 2.0, (double)drawContext.getScaledWindowHeight() / 2.0);
         }
         catch (Throwable throwable) {
-            ((ScreenAccessor)titleScreen).trollhack$renderPanorama(drawContext, f);
+            ((ScreenAccessor)titleScreen).alien$renderPanorama(drawContext, f);
         }
     }
 
     @Redirect(method={"render(Lnet/minecraft/client/gui/DrawContext;IIF)V"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/gui/LogoDrawer;draw(Lnet/minecraft/client/gui/DrawContext;IF)V"))
-    private void trollhack$suppressLogo(LogoDrawer logoDrawer, DrawContext drawContext, int n, float f) {
+    private void alien$suppressLogo(LogoDrawer logoDrawer, DrawContext drawContext, int n, float f) {
         MainMenu mainMenu = MainMenu.INSTANCE;
         if (mainMenu == null || !mainMenu.isSet110()) {
             logoDrawer.draw(drawContext, n, f);
@@ -142,7 +142,7 @@ public class TitleScreenMainMenuMixin {
     }
 
     @Redirect(method={"render(Lnet/minecraft/client/gui/DrawContext;IIF)V"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/gui/screen/SplashTextRenderer;render(Lnet/minecraft/client/gui/DrawContext;ILnet/minecraft/client/font/TextRenderer;F)V"))
-    private void trollhack$suppressSplash(SplashTextRenderer splashTextRenderer, DrawContext drawContext, int n, TextRenderer textRenderer, float f) {
+    private void alien$suppressSplash(SplashTextRenderer splashTextRenderer, DrawContext drawContext, int n, TextRenderer textRenderer, float f) {
         MainMenu mainMenu = MainMenu.INSTANCE;
         if (mainMenu == null || !mainMenu.isSet110()) {
             splashTextRenderer.render(drawContext, n, textRenderer, f);
@@ -150,7 +150,7 @@ public class TitleScreenMainMenuMixin {
     }
 
     @Inject(method={"render(Lnet/minecraft/client/gui/DrawContext;IIF)V"}, at={@At(value="TAIL")})
-    private void trollhack$renderButtons(DrawContext drawContext, int n, int n2, float f, CallbackInfo callbackInfo) {
+    private void alien$renderButtons(DrawContext drawContext, int n, int n2, float f, CallbackInfo callbackInfo) {
         MainMenu mainMenu = MainMenu.INSTANCE;
         if (mainMenu == null || !mainMenu.isSet110()) {
             return;
@@ -169,7 +169,7 @@ public class TitleScreenMainMenuMixin {
             int n4 = Math.round(Client.fontManager.getFloat47());
             fontManager2.m5(drawContext, string, Math.round(f2), Math.round(f3) + n4, -1, true);
         }
-        for (RenderUtil2 renderUtil2 : this.trollhack$buttons) {
+        for (RenderUtil2 renderUtil2 : this.alien$buttons) {
             renderUtil2.m194(n, n2);
             renderUtil2.setObj113(drawContext);
         }

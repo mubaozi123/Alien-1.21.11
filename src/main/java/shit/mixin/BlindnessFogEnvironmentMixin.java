@@ -21,7 +21,7 @@ import shit.module.render.NoRender;
 @Mixin(value={BlindnessEffectFogModifier.class})
 public class BlindnessFogEnvironmentMixin {
     @Inject(method={"applyStartEndModifier(Lnet/minecraft/client/render/fog/FogData;Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/world/ClientWorld;FLnet/minecraft/client/render/RenderTickCounter;)V"}, at={@At(value="TAIL")})
-    private void trollhack$noBlindness(FogData fogData, Camera camera, ClientWorld clientWorld, float f, RenderTickCounter renderTickCounter, CallbackInfo callbackInfo) {
+    private void alien$noBlindness(FogData fogData, Camera camera, ClientWorld clientWorld, float f, RenderTickCounter renderTickCounter, CallbackInfo callbackInfo) {
         if (AntiFog.isSet25() || NoRender.INSTANCE != null && NoRender.INSTANCE.isSet19() && ((Boolean)NoRender.INSTANCE.blindness.getObj()).booleanValue()) {
             float f2;
             fogData.environmentalStart = f2 = 1.0E9f;

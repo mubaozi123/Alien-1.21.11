@@ -121,7 +121,7 @@ extends Module {
         public Burrow() {
         super("Burrow", "Clips into obsidian (\u5361\u9ed1\u66dc\u77f3).", Category.COMBAT);
         this.rotateMode = (EnumSetting)this.m28(new EnumSetting("RotateMode", RotateMode.BYPASS));
-        this.lagMode = (EnumSetting)this.m28(new EnumSetting("LagMode", LagMode.TrollHack));
+        this.lagMode = (EnumSetting)this.m28(new EnumSetting("LagMode", LagMode.Alien));
         this.moveLagMode = (EnumSetting)this.m28(new EnumSetting("MoveLagMode", LagMode.Smart));
         this.disable = (BooleanSetting)this.m28(new BooleanSetting("Disable", true));
         this.jumpDisable = (BooleanSetting)this.m28(new BooleanSetting("JumpDisable", true));
@@ -814,14 +814,14 @@ extends Module {
 
     @Environment(value=EnvType.CLIENT)
     public static enum LagMode {
-        TrollHack,
+        Alien,
         CuiCan,
         Smart,
         ToVoid2;
 
 
         private static LagMode[] getLagModeArray() {
-            return new LagMode[]{TrollHack, CuiCan, Smart, ToVoid2};
+            return new LagMode[]{Alien, CuiCan, Smart, ToVoid2};
         }
     }
 

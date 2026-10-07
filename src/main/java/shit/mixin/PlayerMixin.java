@@ -28,7 +28,7 @@ public class PlayerMixin {
     }
 
     @Inject(method={"travel(Lnet/minecraft/util/math/Vec3d;)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$travelHead(Vec3d vec3d, CallbackInfo callbackInfo) {
+    private void alien$travelHead(Vec3d vec3d, CallbackInfo callbackInfo) {
         Object playerMixin = (Object) this;
         if (!(playerMixin instanceof ClientPlayerEntity)) {
             return;
@@ -50,7 +50,7 @@ public class PlayerMixin {
     }
 
     @Inject(method={"travel(Lnet/minecraft/util/math/Vec3d;)V"}, at={@At(value="TAIL")})
-    private void trollhack$travelTail(Vec3d vec3d, CallbackInfo callbackInfo) {
+    private void alien$travelTail(Vec3d vec3d, CallbackInfo callbackInfo) {
         Object playerMixin = (Object) this;
         if (!(playerMixin instanceof ClientPlayerEntity)) {
             return;

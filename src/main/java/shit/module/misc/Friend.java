@@ -127,7 +127,7 @@ extends Module {
                 return;
             }
             try {
-                Util2.setObj14("w " + string + " I Just Add you as friend on TrollHack-Recode!");
+                Util2.setObj14("w " + string + " I Just Add you as friend on Alien!");
                 Util2.setObj10("\u00a7d\u2709 \u00a7f\u5df2\u5411 \u00a7a" + string + " \u00a7f\u53d1\u9001\u4e86\u52a0\u597d\u53cb\u79c1\u4fe1~ \u00a7d\u55b5\u2661");
             }
             catch (Exception exception) {

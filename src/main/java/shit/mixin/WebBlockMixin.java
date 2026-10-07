@@ -23,7 +23,7 @@ import shit.module.movement.FastWeb;
 @Mixin(value={CobwebBlock.class})
 public class WebBlockMixin {
     @Inject(method={"onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/EntityCollisionHandler;Z)V"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$entityInside(BlockState blockState, World world, BlockPos blockPos, Entity entity, EntityCollisionHandler entityCollisionHandler, boolean bl, CallbackInfo callbackInfo) {
+    private void alien$entityInside(BlockState blockState, World world, BlockPos blockPos, Entity entity, EntityCollisionHandler entityCollisionHandler, boolean bl, CallbackInfo callbackInfo) {
         FastWeb fastWeb = FastWeb.INSTANCE;
         if (fastWeb == null || !fastWeb.isSet19()) {
             return;

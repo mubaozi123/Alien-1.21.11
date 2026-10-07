@@ -15,7 +15,7 @@ import shit.Client;
 @Mixin(targets={"net/minecraft/client/render/RenderTickCounter$Dynamic"})
 public class TimerMixin {
     @Redirect(method={"beginRenderTick(J)I"}, at=@At(value="INVOKE", target="Lit/unimi/dsi/fastutil/floats/FloatUnaryOperator;apply(F)F"))
-    private float trollhack$modifyMspt(FloatUnaryOperator floatUnaryOperator, float f) {
+    private float alien$modifyMspt(FloatUnaryOperator floatUnaryOperator, float f) {
         float f2 = floatUnaryOperator.apply(f);
         return f2 / Client.helper4.getFloat62();
     }

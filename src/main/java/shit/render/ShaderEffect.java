@@ -96,14 +96,14 @@ public class ShaderEffect {
         this.m831();
         this.m796(framebuffer.textureWidth, framebuffer.textureHeight);
         Data3 data3 = this.m940(framebuffer.textureWidth, framebuffer.textureHeight, data, data4);
-        this.renderPass("trollhack_shader_effect", framebuffer, this.field63, this.m973((Object)type), data3, this.m594((Object)type));
+        this.renderPass("alien_shader_effect", framebuffer, this.field63, this.m973((Object)type), data3, this.m594((Object)type));
         Object[] objectArray = new Object[6];
         objectArray[5] = false;
         objectArray[4] = null;
         objectArray[3] = this.renderPipeline14;
         objectArray[2] = framebuffer;
         objectArray[1] = this.field63;
-        objectArray[0] = "trollhack_shader_copy";
+        objectArray[0] = "alien_shader_copy";
         Object[] objectArray2 = objectArray;
         this.renderPass(objectArray2[0], objectArray2[1], objectArray2[2], objectArray2[3], objectArray2[4], (Boolean)objectArray2[5]);
     }
@@ -182,7 +182,7 @@ public class ShaderEffect {
         Color color4 = data4.color9();
         Color color5 = data4.getColor4();
         Color color6 = data4.getColor5();
-        return new Data3(RenderUtil4.m1027("shader_params", "TrollHack Shader Params UBO", count93, 8, new Vec13f(f, f2, data.value99(), data.value100(), data.isSet10() ? -1.0f : ShaderEffect.m6(color), data.getFloat21() / 255.0f, data.value102() / 255.0f, (float)(Util.getMeasuringTimeMs() % 100000L) / 1000.0f, data.getFloat(), data.getFloat37(), data.value105(), f3, f4)), RenderUtil4.m1027("shader_colors", "TrollHack Shader Colors UBO", count84, 8, new Data2(color, color2, color3, color4, color5, color6)));
+        return new Data3(RenderUtil4.m1027("shader_params", "Alien Shader Params UBO", count93, 8, new Vec13f(f, f2, data.value99(), data.value100(), data.isSet10() ? -1.0f : ShaderEffect.m6(color), data.getFloat21() / 255.0f, data.value102() / 255.0f, (float)(Util.getMeasuringTimeMs() % 100000L) / 1000.0f, data.getFloat(), data.getFloat37(), data.value105(), f3, f4)), RenderUtil4.m1027("shader_colors", "Alien Shader Colors UBO", count84, 8, new Data2(color, color2, color3, color4, color5, color6)));
     }
 
     private void m831() {
@@ -216,7 +216,7 @@ public class ShaderEffect {
                     framebuffer = this.field63;
                     if (moduleArray != null) {
                         if (framebuffer == null) {
-                            this.field63 = new SimpleFramebuffer("TrollHack Shader Swap", n4, n3, false);
+                            this.field63 = new SimpleFramebuffer("Alien Shader Swap", n4, n3, false);
                         }
                         framebuffer = this.field63;
                     }
@@ -245,7 +245,7 @@ public class ShaderEffect {
                     framebuffer = this.field46;
                     if (moduleArray != null) {
                         if (framebuffer == null) {
-                            this.field46 = new SimpleFramebuffer("TrollHack Shader Hands", n4, n3, true);
+                            this.field46 = new SimpleFramebuffer("Alien Shader Hands", n4, n3, true);
                         }
                         framebuffer = this.field46;
                     }
@@ -274,7 +274,7 @@ public class ShaderEffect {
                     framebuffer = this.field64;
                     if (moduleArray != null) {
                         if (framebuffer == null) {
-                            this.field64 = new SimpleFramebuffer("TrollHack Shader Chests", n4, n3, true);
+                            this.field64 = new SimpleFramebuffer("Alien Shader Chests", n4, n3, true);
                         }
                         framebuffer = this.field64;
                     }

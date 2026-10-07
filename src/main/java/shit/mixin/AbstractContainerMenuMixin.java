@@ -20,7 +20,7 @@ implements Listener8 {
     private int revision;
 
     @Override
-    public void trollhack$setStateId(int n) {
+    public void alien$setStateId(int n) {
         this.revision = n;
     }
 }

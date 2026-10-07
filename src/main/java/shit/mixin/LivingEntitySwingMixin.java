@@ -18,7 +18,7 @@ import shit.module.render.ViewModel;
 @Mixin(value={LivingEntity.class})
 public class LivingEntitySwingMixin {
     @Inject(method={"getHandSwingDuration()I"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$swingDuration(CallbackInfoReturnable callbackInfoReturnable) {
+    private void alien$swingDuration(CallbackInfoReturnable callbackInfoReturnable) {
         HandSwing handSwing = HandSwing.INSTANCE;
         if (handSwing != null && handSwing.isSet40()) {
             callbackInfoReturnable.setReturnValue((Object)handSwing.getInt89());

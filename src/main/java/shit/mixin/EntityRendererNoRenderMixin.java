@@ -31,7 +31,7 @@ import shit.module.render.NoRender;
 @Mixin(value={EntityRenderer.class})
 public class EntityRendererNoRenderMixin {
     @Inject(method={"updateRenderState(Lnet/minecraft/entity/Entity;Lnet/minecraft/client/render/entity/state/EntityRenderState;F)V"}, at={@At(value="TAIL")})
-    private void trollhack$extract(Entity entity, EntityRenderState entityRenderState, float f, CallbackInfo callbackInfo) {
+    private void alien$extract(Entity entity, EntityRenderState entityRenderState, float f, CallbackInfo callbackInfo) {
         NoRender noRender;
         if (NameTags.m254(entity)) {
             entityRenderState.displayName = null;
@@ -55,7 +55,7 @@ public class EntityRendererNoRenderMixin {
     }
 
     @Inject(method={"shouldRender(Lnet/minecraft/entity/Entity;Lnet/minecraft/client/render/Frustum;DDD)Z"}, at={@At(value="HEAD")}, cancellable=true)
-    private void trollhack$shouldRender(Entity entity, Frustum frustum, double d, double d2, double d3, CallbackInfoReturnable callbackInfoReturnable) {
+    private void alien$shouldRender(Entity entity, Frustum frustum, double d, double d2, double d3, CallbackInfoReturnable callbackInfoReturnable) {
         boolean bl;
         Object object;
         if (entity instanceof LivingEntity) {

@@ -8,6 +8,6 @@ import net.fabricmc.api.Environment;
 
 @Environment(value=EnvType.CLIENT)
 public interface Listener8 {
-    public void trollhack$setStateId(int var1);
+    public void alien$setStateId(int var1);
 }
 
