@@ -36,10 +36,11 @@ jobs:
       - name: Create / Update Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v4.0.0
-          name: Alien 4.0.0 (Minecraft 1.21.11)
+          tag_name: v4.0.1
+          name: Alien 4.0.1 (Minecraft 1.21.11)
           body: |
-            Alien mod version 4.0.0 for Minecraft 1.21.11 (Fabric).
+            Alien mod version 4.0.1 for Minecraft 1.21.11 (Fabric).
+            Fixes TotemParticleMixin startup crash on MC 1.21.11.
             Author: mubaozi123
           files: build/libs/*.jar
           make_latest: true
