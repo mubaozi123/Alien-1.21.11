@@ -65,8 +65,7 @@
 		"CameraMixin",
 		"GameRendererCameraMixin",
 		"OptionInstanceAccessor",
-		"ParticleAccessor",
-		"TotemParticleMixin"
+		"ParticleAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1
