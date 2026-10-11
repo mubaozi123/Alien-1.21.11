@@ -27,6 +27,7 @@ import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.item.Items;
@@ -120,14 +121,13 @@ extends Module {
     private final NumberSetting breakDelay = (NumberSetting)this.m28(new NumberSetting("BreakDelay", 300.0, 0.0, 1000.0, 1.0, 1.0, () -> this.page.getObj() == Page.General && ((Boolean)this.breakSetting.getObj()).booleanValue(), null, "", false));
     private final NumberSetting minAge = (NumberSetting)this.m28(new NumberSetting("MinAge", 0.0, 0.0, 20.0, 1.0, 1.0, () -> this.page.getObj() == Page.General && ((Boolean)this.breakSetting.getObj()).booleanValue(), null, "", false));
     private final BooleanSetting breakRemove = (BooleanSetting)this.m28(new BooleanSetting("Remove", false, () -> this.page.getObj() == Page.General && ((Boolean)this.breakSetting.getObj()).booleanValue(), null, "", false));
-    private final BooleanSetting resetCD = (BooleanSetting)this.m28(new BooleanSetting("ResetAttack", true, () -> this.page.getObj() == Page.General && ((Boolean)this.breakSetting.getObj()).booleanValue(), null, "", false));
     private final NumberSetting wallRange = (NumberSetting)this.m28(new NumberSetting("WallRange", 6.0, 0.0, 6.0, 1.0, 1.0, () -> this.page.getObj() == Page.General, null, "", false));
 
     private final EnumSetting mode = (EnumSetting)this.m28(new EnumSetting("TargetESP", TargetESP.Fill, () -> this.page.getObj() == Page.Render, null, "", false));
-    private final ColorSetting color = (ColorSetting)this.m28(new ColorSetting("TargetColor", 0x32FFFFFF, () -> this.page.getObj() == Page.Render, null, "", false));
-    private final ColorSetting outlineColor = (ColorSetting)this.m28(new ColorSetting("TargetOutlineColor", 0x32FFFFFF, () -> this.page.getObj() == Page.Render, null, "", false));
-    private final ColorSetting hitColor = (ColorSetting)this.m28(new ColorSetting("HitColor", 0x96FFFFFF, () -> this.page.getObj() == Page.Render, null, "", false));
-    private final ColorSetting hitOutlineColor = (ColorSetting)this.m28(new ColorSetting("HitOutlineColor", 0x96FFFFFF, () -> this.page.getObj() == Page.Render, null, "", false));
+    private final ColorSetting color = (ColorSetting)this.m28(new ColorSetting("TargetColor", 0x32FFFFFF, true, () -> this.page.getObj() == Page.Render, null, "", false));
+    private final ColorSetting outlineColor = (ColorSetting)this.m28(new ColorSetting("TargetOutlineColor", 0x32FFFFFF, true, () -> this.page.getObj() == Page.Render, null, "", false));
+    private final ColorSetting hitColor = (ColorSetting)this.m28(new ColorSetting("HitColor", 0x96FFFFFF, true, () -> this.page.getObj() == Page.Render, null, "", false));
+    private final ColorSetting hitOutlineColor = (ColorSetting)this.m28(new ColorSetting("HitOutlineColor", 0x96FFFFFF, true, () -> this.page.getObj() == Page.Render, null, "", false));
     private final BooleanSetting render = (BooleanSetting)this.m28(new BooleanSetting("Render", true, () -> this.page.getObj() == Page.Render, null, "", false));
     private final BooleanSetting sync = (BooleanSetting)this.m28(new BooleanSetting("Sync", true, () -> this.page.getObj() == Page.Render && ((Boolean)this.render.getObj()).booleanValue(), null, "", false));
     private final BooleanSetting shrink = (BooleanSetting)this.m28(new BooleanSetting("Shrink", true, () -> this.page.getObj() == Page.Render && ((Boolean)this.render.getObj()).booleanValue(), null, "", false));
@@ -167,6 +167,7 @@ extends Module {
     public AutoCrystal() {
         super("AutoCrystal", "Automatically places and breaks end crystals.", Category.COMBAT);
         INSTANCE = this;
+        initArmorValues();
     }
 
     @Override
@@ -276,6 +277,7 @@ extends Module {
             int bcolor = (Integer)this.box.getObj();
             EspRenderLayers.m688(matrix4f, cbox, RenderUtil3.m517(bcolor, (int)((double)(bcolor >>> 24 & 0xFF) * this.currentFade * 2.0)), true);
         }
+        EspRenderLayers.m125();
     }
 
     public void doRender(Matrix4f matrix4f, Entity entity, TargetESP mode) {
@@ -373,12 +375,13 @@ extends Module {
         }
         for (EndCrystalEntity crystal : MC.client3.world.getNonSpectatingEntities(EndCrystalEntity.class, MC.client3.player.getBoundingBox().expand(this.breakRange.getDouble20() + 2.0))) {
             if (crystal.age < this.minAge.getInt50()) continue;
-            Vec3d attackVec = this.getAttackVec(crystal.getPos());
+            Vec3d crystalPos = new Vec3d(crystal.getX(), crystal.getY(), crystal.getZ());
+            Vec3d attackVec = this.getAttackVec(crystalPos);
             if (attackVec == null) continue;
             if (!MC.client3.player.canSee((Entity)crystal) && MC.client3.player.getEyePos().distanceTo(attackVec) > this.wallRange.getDouble20()) continue;
-            float selfDamage = this.calculateDamage(crystal.getPos(), MC.client3.player);
+            float selfDamage = this.calculateDamage(crystalPos, MC.client3.player);
             for (PlayerEntity target : list) {
-                float damage = this.calculateDamage(crystal.getPos(), target);
+                float damage = this.calculateDamage(crystalPos, target);
                 if (damage <= this.breakDamage || !this.checkSelfDamage(selfDamage, damage, target)) continue;
                 this.breakDamage = damage;
                 this.tempBreakCrystal = crystal;
@@ -486,8 +489,9 @@ extends Module {
             }
             if (entity instanceof EndCrystalEntity) {
                 if (!ignoreCrystal) return false;
-                if (this.getAttackVec(entity.getPos()) == null) return false;
-                if (!MC.client3.player.canSee(entity) && MC.client3.player.getEyePos().distanceTo(entity.getPos()) > this.wallRange.getDouble20()) return false;
+                Vec3d epos = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
+                if (this.getAttackVec(epos) == null) return false;
+                if (!MC.client3.player.canSee(entity) && MC.client3.player.getEyePos().distanceTo(epos) > this.wallRange.getDouble20()) return false;
                 continue;
             }
             return false;
@@ -525,11 +529,11 @@ extends Module {
         if (data == null || MC.client3.player.getEyePos().distanceTo(data.getVec3d5()) > 6.0) {
             return;
         }
-        boolean switched = Client.renderUtil3.m223(stack -> stack.isOf(Blocks.OBSIDIAN.asItem()), ((Boolean)this.inventory.getObj()).booleanValue() ? shit.module.client.ClientSetting.SwitchMode.INVENTORY : shit.module.client.ClientSetting.SwitchMode.NORMAL);
+        boolean switched = Client.renderUtil3.m223((java.util.function.Predicate<ItemStack>) stack -> stack.isOf(Blocks.OBSIDIAN.asItem()), ((Boolean)this.inventory.getObj()).booleanValue() ? shit.module.client.ClientSetting.SwitchMode.INVENTORY : shit.module.client.ClientSetting.SwitchMode.NORMAL);
         if (!switched) {
             return;
         }
-        BlockUtil.m868(pos, Hand.MAIN_HAND, data.createBlockHitResult());
+        BlockUtil.m868(pos, Hand.MAIN_HAND, data.getObj13());
         if (((Boolean)this.inventory.getObj()).booleanValue()) {
             Client.renderUtil3.m608();
         }
@@ -574,13 +578,14 @@ extends Module {
         this.lastBreakTimer.m533();
         if (this.autoSwap.getObj() != SwapMode.Silent2 && !this.switchTimer.m336(this.switchCooldown.getLong())) return;
         if (entity.age < this.minAge.getInt50()) return;
+        Vec3d epos = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
         if (!this.breakDelayPassed()) {
             if (((Boolean)this.forcePlace.getObj()).booleanValue() && this.crystalPos != null) this.doPlace(this.crystalPos, false);
             return;
         }
         if (((Boolean)this.rotate.getObj()).booleanValue() && ((Boolean)this.onBreak.getObj()).booleanValue()) {
-            Vec3d attackVec = this.getAttackVec(entity.getPos());
-            if (!this.faceVector(attackVec == null ? entity.getPos() : attackVec)) {
+            Vec3d attackVec = this.getAttackVec(epos);
+            if (!this.faceVector(attackVec == null ? epos : attackVec)) {
                 if (((Boolean)this.forcePlace.getObj()).booleanValue() && this.crystalPos != null) this.doPlace(this.crystalPos, false);
                 return;
             }
@@ -588,10 +593,9 @@ extends Module {
         this.syncTimer.m533();
         this.syncPos = entity.getBlockPos();
         MC.client3.player.networkHandler.sendPacket((Packet)PlayerInteractEntityC2SPacket.attack((Entity)entity, MC.client3.player.isSneaking()));
-        if (((Boolean)this.resetCD.getObj()).booleanValue()) MC.client3.player.resetLastAttackedTicks();
         MC.client3.player.swingHand(Hand.MAIN_HAND);
         if (((Boolean)this.breakRemove.getObj()).booleanValue()) MC.client3.world.removeEntity(entity.getId(), Entity.RemovalReason.KILLED);
-        this.afterBreakActions(entity.getPos());
+        this.afterBreakActions(epos);
     }
 
     private void doBreak(BlockPos pos) {
@@ -603,13 +607,14 @@ extends Module {
         Box box = new Box(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1);
         for (EndCrystalEntity entity : MC.client3.world.getNonSpectatingEntities(EndCrystalEntity.class, box)) {
             if (entity.age < this.minAge.getInt50() || !entity.isAlive()) continue;
+            Vec3d epos = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
             if (!this.breakDelayPassed()) {
                 if (((Boolean)this.forcePlace.getObj()).booleanValue() && this.crystalPos != null) this.doPlace(this.crystalPos, false);
                 return;
             }
             if (((Boolean)this.rotate.getObj()).booleanValue() && ((Boolean)this.onBreak.getObj()).booleanValue()) {
-                Vec3d attackVec = this.getAttackVec(entity.getPos());
-                if (!this.faceVector(attackVec == null ? entity.getPos() : attackVec)) {
+                Vec3d attackVec = this.getAttackVec(epos);
+                if (!this.faceVector(attackVec == null ? epos : attackVec)) {
                     if (((Boolean)this.forcePlace.getObj()).booleanValue() && this.crystalPos != null) this.doPlace(this.crystalPos, false);
                     return;
                 }
@@ -617,10 +622,9 @@ extends Module {
             this.syncTimer.m533();
             this.syncPos = pos;
             MC.client3.player.networkHandler.sendPacket((Packet)PlayerInteractEntityC2SPacket.attack((Entity)entity, MC.client3.player.isSneaking()));
-            if (((Boolean)this.resetCD.getObj()).booleanValue()) MC.client3.player.resetLastAttackedTicks();
             MC.client3.player.swingHand(Hand.MAIN_HAND);
             if (((Boolean)this.breakRemove.getObj()).booleanValue()) MC.client3.world.removeEntity(entity.getId(), Entity.RemovalReason.KILLED);
-            this.afterBreakActions(entity.getPos());
+            this.afterBreakActions(epos);
             return;
         }
         if (((Boolean)this.forcePlace.getObj()).booleanValue() && this.crystalPos != null) this.doPlace(this.crystalPos, false);
@@ -658,7 +662,7 @@ extends Module {
             this.doSwap(crystal);
             hand = Hand.MAIN_HAND;
         }
-        MC.client3.interactionManager.interactBlock(MC.client3.player, hand, data.createBlockHitResult());
+        MC.client3.interactionManager.interactBlock(MC.client3.player, hand, data.getObj13());
         MC.client3.player.swingHand(hand);
         if (!mainOrOff && this.autoSwap.getObj() != SwapMode.Inventory) {
             this.doSwap(old);
@@ -687,13 +691,66 @@ extends Module {
         return this.calcEnhancedDamage(new Vec3d((double)pos.getX() + 0.5, (double)pos.getY(), (double)pos.getZ() + 0.5), player);
     }
 
+    private static final java.util.Map<Item, Integer> ARMOR_POINTS = new java.util.HashMap<Item, Integer>();
+    private static final java.util.Map<Item, Float> ARMOR_TOUGHNESS = new java.util.HashMap<Item, Float>();
+
+    private static void armor(Item item, int points, float toughness) {
+        ARMOR_POINTS.put(item, points);
+        ARMOR_TOUGHNESS.put(item, toughness);
+    }
+
+    private static void initArmorValues() {
+        armor(Items.LEATHER_HELMET, 1, 0.0f);
+        armor(Items.LEATHER_CHESTPLATE, 3, 0.0f);
+        armor(Items.LEATHER_LEGGINGS, 2, 0.0f);
+        armor(Items.LEATHER_BOOTS, 1, 0.0f);
+        armor(Items.CHAINMAIL_HELMET, 1, 0.0f);
+        armor(Items.CHAINMAIL_CHESTPLATE, 5, 0.0f);
+        armor(Items.CHAINMAIL_LEGGINGS, 4, 0.0f);
+        armor(Items.CHAINMAIL_BOOTS, 1, 0.0f);
+        armor(Items.IRON_HELMET, 1, 0.0f);
+        armor(Items.IRON_CHESTPLATE, 6, 0.0f);
+        armor(Items.IRON_LEGGINGS, 5, 0.0f);
+        armor(Items.IRON_BOOTS, 1, 0.0f);
+        armor(Items.GOLDEN_HELMET, 1, 0.0f);
+        armor(Items.GOLDEN_CHESTPLATE, 5, 0.0f);
+        armor(Items.GOLDEN_LEGGINGS, 3, 0.0f);
+        armor(Items.GOLDEN_BOOTS, 1, 0.0f);
+        armor(Items.DIAMOND_HELMET, 2, 2.0f);
+        armor(Items.DIAMOND_CHESTPLATE, 6, 2.0f);
+        armor(Items.DIAMOND_LEGGINGS, 5, 2.0f);
+        armor(Items.DIAMOND_BOOTS, 2, 2.0f);
+        armor(Items.NETHERITE_HELMET, 2, 3.0f);
+        armor(Items.NETHERITE_CHESTPLATE, 8, 3.0f);
+        armor(Items.NETHERITE_LEGGINGS, 6, 3.0f);
+        armor(Items.NETHERITE_BOOTS, 2, 3.0f);
+        armor(Items.TURTLE_HELMET, 2, 0.0f);
+    }
+
+    private static int getArmorPoints(ItemStack stack) {
+        Integer value = ARMOR_POINTS.get(stack.getItem());
+        return value == null ? 0 : value;
+    }
+
+    private static float getArmorToughness(ItemStack stack) {
+        Float value = ARMOR_TOUGHNESS.get(stack.getItem());
+        return value == null ? 0.0f : value;
+    }
+
     private float calcEnhancedDamage(Vec3d explosionPos, PlayerEntity target) {
-        double distance = target.getPos().distanceTo(explosionPos);
+        double distance = new Vec3d(target.getX(), target.getY(), target.getZ()).distanceTo(explosionPos);
         if (distance > 12.0) return 0.0f;
         float exposure = this.getEnhancedExposure(explosionPos, target);
         float rawDamage = (float)((exposure * exposure + exposure) / 2.0 * 7.0 * 6.0 + 1.0);
-        float armor = target.getArmor();
-        float toughness = target.getArmorToughness();
+        int armorPoints = 0;
+        float toughness = 0.0f;
+        for (EquipmentSlot equipmentSlot : new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET}) {
+            ItemStack armorStack = target.getEquippedStack(equipmentSlot);
+            if (armorStack.isEmpty()) continue;
+            armorPoints += getArmorPoints(armorStack);
+            toughness += getArmorToughness(armorStack);
+        }
+        float armor = (float)armorPoints;
         float armorReduction = Math.max(armor / 5.0f, armor - rawDamage / (2.0f + toughness / 4.0f));
         float damageAfterArmor = rawDamage * (1.0f - Math.min(armorReduction, 20.0f) / 25.0f);
         float enchantReduction = this.getEnchantReduction(target);
