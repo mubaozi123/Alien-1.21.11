@@ -35,6 +35,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
 import net.minecraft.network.packet.c2s.play.UpdateSelectedSlotC2SPacket;
 import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -782,8 +783,8 @@ extends Module {
 
     private boolean isRayBlocked(Vec3d from, Vec3d to) {
         HitResult result = MC.client3.world.raycast(new RaycastContext(from, to, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, MC.client3.player));
-        if (result == null || result.getType() != HitResult.Type.BLOCK) return false;
-        BlockPos hitPos = result.getBlockPos();
+        if (result == null || !(result instanceof BlockHitResult)) return false;
+        BlockPos hitPos = ((BlockHitResult) result).getBlockPos();
         if (((Boolean)this.terrainIgnore.getObj()).booleanValue()) {
             BlockState state = MC.client3.world.getBlockState(hitPos);
             return !state.isOf(Blocks.BEDROCK) && !state.isOf(Blocks.OBSIDIAN);
