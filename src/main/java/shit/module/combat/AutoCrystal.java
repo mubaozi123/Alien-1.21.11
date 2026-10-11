@@ -44,6 +44,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import org.joml.Matrix4f;
 import shit.Client;
+import shit.module.client.ClientSetting;
 import shit.event.EventHandler;
 import shit.event.Event2;
 import shit.event.PacketEvent;
@@ -222,7 +223,7 @@ extends Module {
     private void onPacketSend(PacketEvent.PacketEventInner2 packetEventInner2) {
         if (packetEventInner2.getPacket() instanceof UpdateSelectedSlotC2SPacket packet && this.lastSlot != packet.getSelectedSlot()) {
             this.lastSlot = packet.getSelectedSlot();
-            if (this.autoSwap.getObj() != SwapMode.Silent2) {
+            if (this.autoSwap.getObj() != SwapMode.Silent) {
                 this.switchTimer.m533();
             }
         }
@@ -484,18 +485,23 @@ extends Module {
         Box box = new Box(pos);
         for (Entity entity : MC.client3.world.getOtherEntities(null, box)) {
             if (!entity.isAlive()) continue;
+            // 掉落物不阻挡水晶放置（原版行为）
             if (entity instanceof ItemEntity) {
                 if (ignoreItem) continue;
-                return false;
-            }
-            if (entity instanceof EndCrystalEntity) {
-                if (!ignoreCrystal) return false;
-                Vec3d epos = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
-                if (this.getAttackVec(epos) == null) return false;
-                if (!MC.client3.player.canSee(entity) && MC.client3.player.getEyePos().distanceTo(epos) > this.wallRange.getDouble20()) return false;
                 continue;
             }
-            return false;
+            if (entity instanceof EndCrystalEntity) {
+                if (ignoreCrystal) continue;
+                return false;
+            }
+            // 只有碰撞箱足够大的实体才阻挡水晶（玩家、盔甲架等）
+            Box ebox = entity.getBoundingBox();
+            double w = ebox.getLengthX();
+            double h = ebox.getLengthY();
+            double d = ebox.getLengthZ();
+            if (w >= 0.4 && h >= 0.4 && d >= 0.4) {
+                return false;
+            }
         }
         return true;
     }
@@ -577,7 +583,7 @@ extends Module {
         if (!((Boolean)this.breakSetting.getObj()).booleanValue() || !entity.isAlive()) return;
         if (this.displayTarget != null && this.displayTarget.hurtTime > this.waitHurt.getInt50() && !this.syncTimer.m336(this.syncTimeout.getLong())) return;
         this.lastBreakTimer.m533();
-        if (this.autoSwap.getObj() != SwapMode.Silent2 && !this.switchTimer.m336(this.switchCooldown.getLong())) return;
+        if (this.autoSwap.getObj() != SwapMode.Normal && this.autoSwap.getObj() != SwapMode.Inventory && !this.switchTimer.m336(this.switchCooldown.getLong())) return;
         if (entity.age < this.minAge.getInt50()) return;
         Vec3d epos = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
         if (!this.breakDelayPassed()) {
@@ -604,7 +610,7 @@ extends Module {
         if (!((Boolean)this.breakSetting.getObj()).booleanValue()) return;
         if (this.displayTarget != null && this.displayTarget.hurtTime > this.waitHurt.getInt50() && !this.syncTimer.m336(this.syncTimeout.getLong())) return;
         this.lastBreakTimer.m533();
-        if (this.autoSwap.getObj() != SwapMode.Silent2 && !this.switchTimer.m336(this.switchCooldown.getLong())) return;
+        if (this.autoSwap.getObj() != SwapMode.Silent && !this.switchTimer.m336(this.switchCooldown.getLong())) return;
         Box box = new Box(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1);
         for (EndCrystalEntity entity : MC.client3.world.getNonSpectatingEntities(EndCrystalEntity.class, box)) {
             if (entity.age < this.minAge.getInt50() || !entity.isAlive()) continue;
@@ -654,19 +660,32 @@ extends Module {
         if (doRotate && !this.faceVector(vec)) return;
         this.placeTimer.m533();
         this.syncPos = pos;
-        boolean mainOrOff = MC.client3.player.getMainHandStack().isOf(Items.END_CRYSTAL) || MC.client3.player.getOffHandStack().isOf(Items.END_CRYSTAL);
-        Hand hand = MC.client3.player.getOffHandStack().isOf(Items.END_CRYSTAL) ? Hand.OFF_HAND : Hand.MAIN_HAND;
+        // 主手/副手有水晶则直接放；否则按 AutoSwap 模式临时切换（原版对侧面放置同样有效）
+        Hand hand;
         int old = MC.client3.player.getInventory().getSelectedSlot();
-        if (!mainOrOff) {
-            int crystal = this.getCrystal();
-            if (crystal == -1) return;
-            this.doSwap(crystal);
+        boolean switchedBack = false;
+        if (MC.client3.player.getOffHandStack().isOf(Items.END_CRYSTAL)) {
+            hand = Hand.OFF_HAND;
+        } else if (MC.client3.player.getMainHandStack().isOf(Items.END_CRYSTAL)) {
             hand = Hand.MAIN_HAND;
+        } else {
+            int crystal = this.getCrystal();
+            if (crystal == -1 || this.autoSwap.getObj() == SwapMode.None) return;
+            if (this.autoSwap.getObj() == SwapMode.Inventory) {
+                if (!Client.renderUtil3.m223((java.util.function.Predicate<ItemStack>) stack -> stack.isOf(Items.END_CRYSTAL), ClientSetting.SwitchMode.INVENTORY)) return;
+                hand = Hand.MAIN_HAND;
+            } else {
+                this.doSwap(crystal);
+                hand = Hand.MAIN_HAND;
+                switchedBack = true;
+            }
         }
         MC.client3.interactionManager.interactBlock(MC.client3.player, hand, data.getObj13());
         MC.client3.player.swingHand(hand);
-        if (!mainOrOff && this.autoSwap.getObj() != SwapMode.Inventory) {
+        if (switchedBack) {
             this.doSwap(old);
+        } else if (this.autoSwap.getObj() == SwapMode.Inventory) {
+            Client.renderUtil3.m608();
         }
         if (doRotate) {
             Client.mathUtil.m370();
@@ -838,7 +857,7 @@ extends Module {
 
     @Environment(value=EnvType.CLIENT)
     public static enum SwapMode {
-        None, Normal, Silent, Silent2, Inventory;
+        None, Normal, Silent, Inventory;
     }
 
     @Environment(value=EnvType.CLIENT)
