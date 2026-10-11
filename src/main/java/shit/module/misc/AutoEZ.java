@@ -1,7 +1,7 @@
 /*
  * Decompiled with CFR 0.152.
  */
-package shit.module.combat;
+package shit.module.misc;
 
 import java.util.HashSet;
 import java.util.Set;

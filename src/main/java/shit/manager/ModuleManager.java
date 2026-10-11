@@ -49,7 +49,7 @@ import shit.module.client.SettingTest;
 import shit.module.client.Skin;
 import shit.module.combat.AntiBot;
 import shit.module.combat.AntiRegear;
-import shit.module.combat.AutoEZ;
+import shit.module.misc.AutoEZ;
 import shit.module.combat.AutoHoleFill;
 import shit.module.combat.AutoKit;
 import shit.module.combat.AutoMend;
@@ -280,7 +280,7 @@ public class ModuleManager {
         this.setObj16(new shit.module.movement.Timer());
         this.setObj16(new shit.module.combat.ZealotCrystalPlus());
         this.setObj16(new shit.module.combat.AntiBot());
-        this.setObj16(new shit.module.combat.AutoEZ());
+        this.setObj16(new shit.module.misc.AutoEZ());
         this.setObj16(new shit.module.combat.AutoHoleFill());
         this.setObj16(new shit.module.combat.WebAura());
         this.setObj16(new shit.module.combat.AutoKit());
@@ -329,6 +329,7 @@ public class ModuleManager {
         this.setObj16(new shit.module.misc.AutoReconnect());
         this.setObj16(new shit.module.combat.AntiRegear());
         this.setObj16(new shit.module.combat.AutoRegear());
+        this.setObj16(new shit.module.combat.AutoCrystal());
         this.setObj16(new shit.module.combat.AutoTrap());
         this.setObj16(new shit.module.exploit.MaceSpoof());
         this.setObj16(new shit.module.exploit._32kMace());
